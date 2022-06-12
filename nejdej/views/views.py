@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from utils.mixins import HttpMethodRestrictionViewSet
+from nejdej.utils.mixins import HttpMethodRestrictionViewSet
 
 from drf_spectacular.utils import extend_schema, extend_schema_view
 

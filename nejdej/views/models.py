@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db.models import F
 
 class ListingView(models.Model):
-    listing_name = models.SlugField(max_length = 200, default = "",unique = True)
+    listing = models.OneToOneField('listings.Listing', on_delete=models.CASCADE)
     daily = models.IntegerField(default = 0)
     weekly = models.IntegerField(default = 0)
     monthly = models.IntegerField(default = 0)
@@ -18,10 +18,10 @@ class ListingView(models.Model):
         verbose_name_plural = "Listing Views"
 
     def __str__(self):
-        return f"{self.listing_name}"
+        return f"{self.listing.name}"
     
     def update_views(self, increment_num = 1):
-        obj = ListingView.objects.filter(listing_name = self.listing_name)
+        obj = ListingView.objects.filter(listing = self.listing)
         obj.update(
                     daily = F('daily')+increment_num,
                     weekly = F('weekly')+increment_num ,

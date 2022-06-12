@@ -6,8 +6,8 @@ class UsersConfig(AppConfig):
     name = "nejdej.users"
     verbose_name = _("Users")
 
-    def ready(self):
-        try:
-            import nejdej.users.signals  # noqa F401
-        except ImportError:
-            pass
+    # def ready(self):
+    #     try:
+    #         import nejdej.users # noqa F401
+    #     except ImportError:
+    #         pass

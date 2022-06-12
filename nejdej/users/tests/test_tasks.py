@@ -2,7 +2,7 @@ import pytest
 from celery.result import EagerResult
 
 from nejdej.users.tasks import get_users_count
-from nejdej.users.tests.factories import UserFactory
+from nejdej.utils.factories import UserFactory
 
 pytestmark = pytest.mark.django_db
 
