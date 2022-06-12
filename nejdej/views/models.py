@@ -18,7 +18,7 @@ class ListingView(models.Model):
         verbose_name_plural = "Listing Views"
 
     def __str__(self):
-        return f"{self.listing.name}"
+        return f"{self.listing.title}"
     
     def update_views(self, increment_num = 1):
         obj = ListingView.objects.filter(listing = self.listing)

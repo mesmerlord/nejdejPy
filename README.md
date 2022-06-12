@@ -69,7 +69,7 @@ Go to the project directory
 
 ### Model Diagram
 
-![Model connections](https://snipboard.io/MUEFQ3.jpg)
+![Model connections](https://snipboard.io/D1WpeK.jpg)
 
 You can generate this using:
 

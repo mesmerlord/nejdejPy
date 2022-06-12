@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from django.apps import apps
 
 @receiver(post_save, sender='listings.Listing')
-def create_default_dealership_settings(sender, instance, created, **kwargs):
-    from views.models import ListingView
+def create_default_listing_view(sender, instance, created, **kwargs):
+    from nejdej.views.models import ListingView
     if created:
         ListingView.objects.create(listing=instance)

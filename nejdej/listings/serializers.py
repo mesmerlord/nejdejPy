@@ -1,9 +1,11 @@
+from nejdej.views.serializers import ListingViewSerializer
 from rest_framework import serializers
 
 from .models import Listing
 
 
 class ListingSerializer(serializers.ModelSerializer):
+    views = ListingViewSerializer(read_only = True, source = 'listingview')
     class Meta:
         model = Listing
-        fields = '__all__'
+        exclude = ('created_at', 'updated_at')

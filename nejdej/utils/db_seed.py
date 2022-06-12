@@ -51,7 +51,7 @@ def seed_listings():
 
     SubCategory = apps.get_model('categories', 'SubCategory')
     sub_categories = SubCategory.objects.all()
-    for _ in range(len(sub_categories)*10):
+    for _ in range(len(sub_categories)*3):
         
         created = ListingFactory.create()
         print(f'Added listing : {created}')
@@ -62,7 +62,7 @@ def seed_reviews():
 
     Listing = apps.get_model('listings', 'Listing')
     listings = Listing.objects.all()
-    for _ in range(len(listings)*3):
+    for _ in range(len(listings)*2):
         
         created = ReviewFactory.create()
         print(f'Added review : {created}')
@@ -73,7 +73,7 @@ def seed_review_images():
 
     Listing = apps.get_model('listings', 'Listing')
     listings = Listing.objects.all()
-    for _ in range(len(listings)*3):
+    for _ in range(len(listings)):
         
         created = ReviewImageFactory.create()
         print(f'Added review image : {created}')

@@ -17,7 +17,7 @@ class Review(AbstractClient):
         blank=False, choices=StatusChoices.choices, max_length=2, editable=False, help_text=StatusChoices.choices
     )
     user = models.ForeignKey('users.User', on_delete=models.CASCADE)
-    listing = models.ForeignKey('listings.Listing', on_delete=models.PROTECT)
+    listing = models.ForeignKey('listings.Listing', null = True, blank = True, on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = "Review"

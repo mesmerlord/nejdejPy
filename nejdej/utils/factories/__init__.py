@@ -74,10 +74,9 @@ class SubCategoryFactory(factory.django.DjangoModelFactory):
 class ListingFactory(factory.django.DjangoModelFactory):
     """Listing factory."""
 
-    id = faker.uuid4()
+    id = factory.LazyAttribute(lambda x: faker.uuid4())
     title = factory.LazyAttribute(lambda x: faker.paragraph(nb_sentences = 1))
     description = factory.LazyAttribute(lambda x: faker.paragraph(nb_sentences = 3))
-    name = factory.LazyAttribute(lambda x: faker.color_name())
     image = factory.django.ImageField(color='red')
     status = factory.Iterator(Listing.StatusChoices)
     user = factory.Iterator(User.objects.all())
@@ -91,6 +90,7 @@ class ListingFactory(factory.django.DjangoModelFactory):
 class ReviewFactory(factory.django.DjangoModelFactory):
     """Review factory."""
 
+    id = factory.Sequence(lambda n: n + 1)
     title = factory.LazyAttribute(lambda x: faker.paragraph(nb_sentences = 1))
     description = factory.LazyAttribute(lambda x: faker.paragraph(nb_sentences = 3))
     status = factory.Iterator(Review.StatusChoices)
@@ -104,6 +104,7 @@ class ReviewFactory(factory.django.DjangoModelFactory):
 class ReviewImageFactory(factory.django.DjangoModelFactory):
     """ReviewImage factory."""
 
+    id = factory.Sequence(lambda n: n + 1)
     image = factory.django.ImageField(color='pink')
     review = factory.Iterator(Review.objects.all())
 
