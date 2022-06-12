@@ -40,6 +40,8 @@ services:
       - django
     volumes:
       - production_traefik:/etc/traefik/acme:z
+    env_file:
+      - ./.envs/.production/.django
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
@@ -62,3 +64,17 @@ services:
     <<: *django
     image: nejdej_production_flower
     command: /start-flower
+
+  frontend:
+    image: nejdej_production_frontend
+    container_name: nejdej_production_frontend
+    build:
+      context: .
+      dockerfile: ./compose/production/frontend/Dockerfile
+
+    depends_on:
+      - redis
+      - postgres
+      - django
+    ports:
+      - "3000:3000"
