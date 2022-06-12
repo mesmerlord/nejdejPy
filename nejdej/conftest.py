@@ -35,12 +35,12 @@ def api_client():
     return APIClient()
 
 
-@pytest.fixture(scope="session")
-def django_db_setup(django_db_setup, django_db_blocker):
-    from nejdej.utils.db_seed import run
+# @pytest.fixture(scope="session")
+# def django_db_setup(django_db_setup, django_db_blocker):
+#     from nejdej.utils.db_seed import run
 
-    with django_db_blocker.unblock():
-        run()
+#     with django_db_blocker.unblock():
+#         run()
 
 
 @pytest.fixture(scope="session")
