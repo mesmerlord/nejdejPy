@@ -29,4 +29,4 @@ jobs:
           cd nejdejPy
           git checkout main
           git pull
-          docker-compose -f production.yml up --build
+          docker-compose -f production.yml up -d --build
