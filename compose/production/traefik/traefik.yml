@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-        rule: "Host(`nejdej.com`) || Host(`www.nejdej.com`) && PathPrefix(`/api/`, `/api-schema/`)"
+        rule: "Host(`nejdej.com`) && PathPrefix(`/api/`, `/api-schema/`) || Host(`www.nejdej.com`) && PathPrefix(`/api/`, `/api-schema/`)"
         entryPoints:
           - web-secure
         middlewares:
