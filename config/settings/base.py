@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+import os
 from pathlib import Path
 
 import environ
@@ -335,6 +336,9 @@ SPECTACULAR_SETTINGS = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+USE_SPACES = env("USE_SPACES") == "TRUE"
+
+
 AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", default="")
 AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", default="")
 AWS_DEFAULT_ACL = "public-read"
@@ -348,3 +352,16 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 
 DEFAULT_FILE_STORAGE = "nejdej.utils.storages.MediaStorage"
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+if USE_SPACES:
+    AWS_LOCATION = "static"
+    STATIC_URL = f"https://{AWS_S3_ENDPOINT_URL}/{AWS_LOCATION}/"
+    STATICFILES_STORAGE = "nejdej.utils.storages.MediaStorage"
+    # public media settings
+else:
+    STATIC_URL = "/static/"
+    STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_DIRS = (BASE_DIR / "static",)
