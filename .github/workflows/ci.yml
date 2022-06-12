@@ -39,7 +39,7 @@ jobs:
         envkey_AWS_STORAGE_BUCKET_NAME : ${{ secrets.AWS_STORAGE_BUCKET_NAME }}
         envkey_AWS_S3_ENDPOINT_URL : ${{ secrets.AWS_S3_ENDPOINT_URL }}
         envkey_AWS_S3_CUSTOM_DOMAIN : ${{ secrets.AWS_S3_CUSTOM_DOMAIN }}
-        directory: ./.envs/.local/
+        directory: ../../.envs/.local/
         file_name: .django
         fail_on_empty: false
 
