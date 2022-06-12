@@ -31,15 +31,27 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`nejdej.com/api/`) || Host(`www.nejdej.com/api/`) || Host(`www.nejdej.com/api-schema/`)"
-      entryPoints:
-        - web-secure
-      middlewares:
-        - csrf
-      service: django
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
+        rule: "Host(`nejdej.com/api/`) || Host(`www.nejdej.com/api/`) || Host(`www.nejdej.com/api-schema/`)"
+        entryPoints:
+          - web-secure
+        middlewares:
+          - csrf
+        service: django
+        tls:
+          # https://docs.traefik.io/master/routing/routers/#certresolver
+          certResolver: letsencrypt
+
+    web-secure-router-frontend:
+        rule: "Host(`nejdej.com`) || Host(`www.nejdej.com`) || Host(`www.nejdej.com`)"
+        entryPoints:
+          - web-secure
+        middlewares:
+          - csrf
+        service: frontend
+        tls:
+          # https://docs.traefik.io/master/routing/routers/#certresolver
+          certResolver: letsencrypt
+
 
     flower-secure-router:
       rule: "Host(`nejdej.com`)"
@@ -67,6 +79,11 @@ http:
       loadBalancer:
         servers:
           - url: http://flower:5555
+
+    frontend:
+      loadBalancer:
+        servers:
+          - url: http://frontend:3000
 
 providers:
   # https://docs.traefik.io/master/providers/file/
