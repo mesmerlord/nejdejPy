@@ -62,3 +62,17 @@ services:
     <<: *django
     image: nejdej_production_flower
     command: /start-flower
+
+    frontend:
+      image: nejdej_local_frontend
+      container_name: nejdej_local_frontend
+      build:
+        context: .
+        dockerfile: ./compose/local/frontend/Dockerfile
+
+      depends_on:
+        - redis
+        - postgres
+        - django
+      ports:
+        - "3000:3000"

@@ -1,6 +1,10 @@
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.permissions import IsAdminUser
+from rest_framework.response import Response
 
+from nejdej.categories.tasks import seed_categories_task
 from nejdej.utils.mixins import HttpMethodRestrictionViewSet
 
 from .models import Category, SubCategory
@@ -16,6 +20,22 @@ class CategoryViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = None
+
+    @extend_schema(
+        description="Seed the database with categories from Bazos.",
+    )
+    @action(
+        methods=["get"],
+        detail=False,
+        pagination_class=None,
+        permission_classes=[IsAdminUser],
+    )
+    def seed_inital(self, request, *args, **kwargs):
+        """
+        Seed the database with categories from Bazos.
+        """
+        seed_categories_task.delay()
+        return Response("Categories seeded.")
 
 
 @extend_schema_view(
