@@ -64,7 +64,21 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+USE_SPACES = env.bool("USE_SPACES")
+
+if USE_SPACES:
+    AWS_LOCATION = "static"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"  # noqa F405
+    STATICFILES_STORAGE = "nejdej.utils.storages.MediaStorage"
+    # public media settings
+else:
+    STATIC_URL = "/static/"
+    STATIC_ROOT = APPS_DIR / "staticfiles"  # noqa F405
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+STATICFILES_DIRS = (APPS_DIR / "static",)  # noqa F405
+
 # MEDIA
 # ------------------------------------------------------------------------------
 

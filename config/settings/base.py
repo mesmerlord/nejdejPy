@@ -336,7 +336,6 @@ SPECTACULAR_SETTINGS = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
-USE_SPACES = env.bool("USE_SPACES")
 
 
 AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", default="")
@@ -352,14 +351,3 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 
 DEFAULT_FILE_STORAGE = "nejdej.utils.storages.MediaStorage"
-
-if USE_SPACES:
-    AWS_LOCATION = "static"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
-    STATICFILES_STORAGE = "nejdej.utils.storages.MediaStorage"
-    # public media settings
-else:
-    STATIC_URL = "/static/"
-    STATIC_ROOT = APPS_DIR / "staticfiles"
-
-STATICFILES_DIRS = (APPS_DIR / "static",)
