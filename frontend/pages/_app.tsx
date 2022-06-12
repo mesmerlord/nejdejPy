@@ -1,14 +1,16 @@
 import { GetServerSidePropsContext } from 'next';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { AppProps } from 'next/app';
 import { getCookie, setCookies } from 'cookies-next';
 import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
+import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
   const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
+  const [queryClient] = React.useState(() => new QueryClient());
 
   const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
@@ -18,6 +20,8 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 
   return (
     <>
+    <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
       <Head>
         <title>Mantine next example</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -31,6 +35,8 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
+      </Hydrate>
+    </QueryClientProvider>
     </>
   );
 }
