@@ -6,7 +6,6 @@ from nejdej.users.forms import UserAdminChangeForm, UserAdminCreationForm
 from nejdej.users.models import User
 
 
-
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
 

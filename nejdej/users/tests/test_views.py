@@ -10,12 +10,8 @@ from django.urls import reverse
 
 from nejdej.users.forms import UserAdminChangeForm
 from nejdej.users.models import User
+from nejdej.users.views import UserRedirectView, UserUpdateView, user_detail_view
 from nejdej.utils.factories import UserFactory
-from nejdej.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
 
 pytestmark = pytest.mark.django_db
 

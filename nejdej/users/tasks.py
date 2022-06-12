@@ -1,7 +1,6 @@
-
 from config import celery_app
-
 from nejdej.users.models import User
+
 
 @celery_app.task()
 def get_users_count():

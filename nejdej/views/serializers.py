@@ -6,4 +6,4 @@ from .models import ListingView
 class ListingViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = ListingView
-        fields = '__all__'
+        fields = "__all__"
