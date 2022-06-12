@@ -64,11 +64,11 @@ services:
     command: /start-flower
 
   frontend:
-    image: nejdej_local_frontend
-    container_name: nejdej_local_frontend
+    image: nejdej_production_frontend
+    container_name: nejdej_production_frontend
     build:
       context: .
-      dockerfile: ./compose/local/frontend/Dockerfile
+      dockerfile: ./compose/production/frontend/Dockerfile
 
     depends_on:
       - redis
