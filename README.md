@@ -1,5 +1,5 @@
 
-# Nejdej 
+# Nejdej
 
 The backend and frontend for the online marketplace, nejdej.com
 
@@ -139,4 +139,3 @@ You must set the DSN url in production.
 This project uses cookie-cutter django for the initialization, which includes great guides on how to do simple deployments on any EC2 instance/Droplet/VM
 
 See detailed (http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
-

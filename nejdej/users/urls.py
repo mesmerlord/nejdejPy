@@ -1,10 +1,6 @@
 from django.urls import path
 
-from nejdej.users.views import (
-    user_detail_view,
-    user_redirect_view,
-    user_update_view,
-)
+from nejdej.users.views import user_detail_view, user_redirect_view, user_update_view
 
 app_name = "users"
 urlpatterns = [

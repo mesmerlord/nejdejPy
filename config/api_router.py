@@ -1,11 +1,11 @@
 from django.conf import settings
+from rest_framework.routers import DefaultRouter, SimpleRouter
+
 from nejdej.categories.views import CategoryViewSet, SubCategoryViewSet
 from nejdej.listings.views import ListingViewSet
 from nejdej.reviews.views import ReviewViewSet
-from nejdej.views.views import ListingViewViewSet
-from rest_framework.routers import DefaultRouter, SimpleRouter
-
 from nejdej.users.api.views import UserViewSet
+from nejdej.views.views import ListingViewViewSet
 
 if settings.DEBUG:
     router = DefaultRouter()

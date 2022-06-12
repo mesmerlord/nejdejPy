@@ -6,6 +6,7 @@ from .models import Category, SubCategory
 class CategoryAdmin(admin.ModelAdmin):
     list_display = [f.name for f in Category._meta.fields]
 
+
 class SubCategoryAdmin(admin.ModelAdmin):
     list_display = [f.name for f in SubCategory._meta.fields]
 

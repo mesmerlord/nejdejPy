@@ -18,9 +18,8 @@ app.autodiscover_tasks()
 
 
 app.conf.beat_schedule = {
-    
-    'increment_views': {
-        'task': 'nejdej.views.tasks.add_views',
-        'schedule': 10,
+    "increment_views": {
+        "task": "nejdej.views.tasks.add_views",
+        "schedule": 10,
     }
 }
