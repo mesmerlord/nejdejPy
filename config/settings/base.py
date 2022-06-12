@@ -354,7 +354,7 @@ DEFAULT_FILE_STORAGE = "nejdej.utils.storages.MediaStorage"
 
 if USE_SPACES:
     AWS_LOCATION = "static"
-    STATIC_URL = f"https://{AWS_S3_ENDPOINT_URL}/{AWS_LOCATION}/"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
     STATICFILES_STORAGE = "nejdej.utils.storages.MediaStorage"
     # public media settings
 else:
