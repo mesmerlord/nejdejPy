@@ -7,7 +7,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from .serializers import UserSerializer
 
-User = get_user_model()
+from nejdej.users.models import User
 
 
 class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):

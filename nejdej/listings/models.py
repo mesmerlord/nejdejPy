@@ -10,10 +10,10 @@ class Listing(AbstractClient):
         PUBLISHED = 'PB', _('Published')
         DENIED = 'DN', _('Denied')
 
+    id = models.UUIDField(primary_key = True)
     title = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, primary_key = True)
     description = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to=ListingImageStorage(), null=True, blank=True)
+    image = models.ImageField(storage=ListingImageStorage(), null=True, blank=True)
     status = models.CharField(
         blank=False, choices=StatusChoices.choices, max_length=2, editable=False, help_text=StatusChoices.choices
     )
@@ -28,3 +28,8 @@ class Listing(AbstractClient):
 
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.status = 'DF'
+        super().save(*args, **kwargs)

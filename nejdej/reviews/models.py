@@ -18,7 +18,6 @@ class Review(AbstractClient):
     )
     user = models.ForeignKey('users.User', on_delete=models.CASCADE)
     listing = models.ForeignKey('listings.Listing', on_delete=models.PROTECT)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
         verbose_name = "Review"
@@ -28,5 +27,5 @@ class Review(AbstractClient):
         return self.title
 
 class ReviewImage(AbstractClient):
-    image = models.ImageField(upload_to=ReviewImageStorage(), null=True, blank=True)
+    image = models.ImageField(storage=ReviewImageStorage(), null=True, blank=True)
     review = models.ForeignKey('reviews.Review', on_delete=models.CASCADE)

@@ -26,3 +26,6 @@ drf-spectacular==0.22.1  # https://github.com/tfranzel/drf-spectacular
 django-storages==1.12.3
 django-filter==21.1
 boto3
+
+pydotplus
+graphviz

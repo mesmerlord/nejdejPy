@@ -30,3 +30,10 @@ class ReviewImageStorage(S3Boto3Storage):
 
     def _get_security_token(self):
         return None
+
+class MediaStorage(S3Boto3Storage):
+    bucket_name = AWS_STORAGE_BUCKET_NAME
+    default_acl = 'public-read'
+
+    def _get_security_token(self):
+        return None

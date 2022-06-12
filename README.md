@@ -1,9 +1,96 @@
-# Nejdej
+
+# Nejdej 
+
+The backend and frontend for the online marketplace, nejdej.com
 
 A place to bring together buyers and sellers of second hand goods
 
-[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
+[![Initialized with Cookiecutter Django](https://img.shields.io/badge/initialized%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+## API Reference
+
+Currently the Swagger link for the demo API endpoint is: https://nejdej.com/api/docs/
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/mesmerlord/nejdejPy.git
+```
+
+Go to the project directory
+
+```bash
+  cd nejdejPy
+```
+
+
+
+### Running the containers
+
+
+#### Requirements
+ - Docker
+ - Docker-Compose
+ - pre-commit
+
+1. Copy variables from .env.example and insert the values provided.
+2. Build and run the containers
+
+```bash
+  docker-compose -f local.yml up
+```
+3. Create a superuser with your preferred username and password
+```bash
+  docker-compose -f local.yml \
+  run --rm django python manage.py createsuperuser
+```
+4. You can now login to the admin dashboard at http://127.0.0.1:8000/admin/
+
+5. The Swagger for the backend should now be live on http://127.0.0.1:8000/api/docs/ . Reminder to create a superuser and login to admin panel first, as access to this requires admin privileges first.
+
+6. Seed testing data using
+```bash
+  docker-compose -f local.yml \
+  run --rm django python manage.py runscript utils.db_seed
+```
+
+#### Initialize pre-commit
+
+```bash
+  pip install pre-commit
+```
+
+```bash
+  pre-commit install
+```
+
+### Model Diagram
+
+![Model connections](https://snipboard.io/MUEFQ3.jpg)
+
+You can generate this using:
+
+```bash
+docker-compose -f local.yml \
+run --rm django python manage.py \
+graph_models -a --hide-edge-labels --arrow-shape normal \
+-X AbstractClient,LogEntry,ActiveAbstractClient,AbstractUser,ContentType,Session,AbstractBaseSession,AbstractBaseUser,PermissionsMixin,Permission \
+-g -o my_project_visualized.png
+```
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  docker-compose -f local.yml \
+  run --rm django python manage.py test
+```
+
+## Default Readme from Django-Cookie-Cutter
+
 
 ## Settings
 
@@ -11,37 +98,22 @@ Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings
 
 ## Basic Commands
 
-### Setting Up Your Users
-
--   To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
-
--   To create a **superuser account**, use this command:
-
-        $ python manage.py createsuperuser
-
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
-
 ### Type checks
 
 Running type checks with mypy:
 
-    $ mypy nejdej
+```bash
+  docker-compose -f local.yml \
+  run --rm django mypy nejdej
+```
 
 ### Test coverage
 
 To run the tests, check your test coverage, and generate an HTML coverage report:
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-#### Running tests with pytest
-
-    $ pytest
-
-### Live reloading and Sass CSS compilation
-
-Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#sass-compilation-live-reloading).
+```bash
+  docker-compose -f local.yml \
+  run --rm django coverage run -m pytest
+```
 
 ### Celery
 
@@ -50,23 +122,21 @@ This app comes with Celery.
 To run a celery worker:
 
 ``` bash
-cd nejdej
-celery -A config.celery_app worker -l info
+cd nejdejPy
+docker-compose -f local.yml \
+run --rm celeryworker celery -A config.celery_app worker -l info
 ```
-
-Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
 
 ### Sentry
 
-Sentry is an error logging aggregator service. You can sign up for a free account at <https://sentry.io/signup/?code=cookiecutter> or download and host it yourself.
+Sentry is an error logging aggregator service. You can sign up for a free account at https://sentry.io/signup/ or download and host it yourself.
 The system is set up with reasonable defaults, including 404 logging and integration with the WSGI application.
 
 You must set the DSN url in production.
 
 ## Deployment
 
-The following details how to deploy this application.
+This project uses cookie-cutter django for the initialization, which includes great guides on how to do simple deployments on any EC2 instance/Droplet/VM
 
-### Docker
+See detailed (http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
 
-See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
