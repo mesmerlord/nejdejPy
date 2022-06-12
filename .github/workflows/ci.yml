@@ -54,7 +54,7 @@ jobs:
           echo REDIS_URL=redis://redis:6379/0 >> .envs/.local/.django
           echo CELERY_FLOWER_USER=pOrKBvglpnlYTRfAhlWVTZwjdoiKAhYN >> .envs/.local/.django
           echo CELERY_FLOWER_PASSWORD=SnL85PQVgfSgvLYamAKSmyj97f5CI2e82t2fTWIv1sEDUeENrIwJvUhi6uxzWYdJ >> .envs/.local/.django
-          cat .env
+          cat .envs/.local/.django
 
       - name: Build the Stack
         run:  docker-compose -f local.yml build
