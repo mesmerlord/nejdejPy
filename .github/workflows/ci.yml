@@ -49,7 +49,7 @@ jobs:
 
       - name: Create empty env
         run:  |
-          touch .envs/.local/.django \
+          touch .envs/.local/.django && \
           echo USE_DOCKER=yes >> .envs/.local/.django
           echo REDIS_URL=redis://redis:6379/0 >> .envs/.local/.django
           echo CELERY_FLOWER_USER=pOrKBvglpnlYTRfAhlWVTZwjdoiKAhYN >> .envs/.local/.django
