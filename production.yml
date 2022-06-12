@@ -67,7 +67,7 @@ services:
     image: nejdej_production_frontend
     container_name: nejdej_production_frontend
     build:
-      context: ./frontend
+      context: .
       dockerfile: ./compose/production/frontend/Dockerfile
 
     depends_on:
