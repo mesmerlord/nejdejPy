@@ -39,4 +39,5 @@ yarn-error.log*
 # storybook
 storybook-static
 
+.env.production
 ##### Frontend end #####
