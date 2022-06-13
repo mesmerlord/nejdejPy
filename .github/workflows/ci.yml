@@ -7,8 +7,8 @@ env:
 
 on:
   pull_request:
-    branches: [ "master", "main" ]
-    paths-ignore: [ "docs/**" ]
+    branches: ["master", "main"]
+    paths-ignore: ["docs/**"]
 
 concurrency:
   group: ${{ github.head_ref || github.run_id }}
@@ -18,7 +18,6 @@ jobs:
   linter:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout Code Repository
         uses: actions/checkout@v3
 
@@ -39,12 +38,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout Code Repository
         uses: actions/checkout@v3
 
       - name: Create empty env
-        run:  |
+        run: |
           touch .envs/.local/.django
           echo USE_DOCKER=yes >> .envs/.local/.django
           echo REDIS_URL=redis://redis:6379/0 >> .envs/.local/.django
@@ -53,13 +51,41 @@ jobs:
           cat .envs/.local/.django
 
       - name: Build the Stack
-        run:  docker-compose -f local.yml build
+        run: docker-compose -f local.yml build
 
       - name: Run DB Migrations
-        run:  docker-compose -f local.yml run --rm django python manage.py migrate
+        run: docker-compose -f local.yml run --rm django python manage.py migrate
 
       - name: Run Django Tests
-        run:  docker-compose -f local.yml run django pytest
+        run: docker-compose -f local.yml run django pytest
 
       - name: Tear down the Stack
-        run:  docker-compose -f local.yml down
+        run: docker-compose -f local.yml down
+
+  frontend_build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Setup yarn
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "yarn"
+
+      - name: Go into frontend folder
+        run: cd frontend
+
+      - name: Install modules
+        run: yarn install --frozen-lockfile
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Build the test stack
+        run: yarn build

@@ -3,11 +3,11 @@ import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeTo
 import { useApiCategoriesList } from '../src/api/api';
 import { Category } from '../src/model';
 import { dehydrate, QueryClient } from 'react-query';
-import {apiCategoriesList} from '../src/api/api';
+import { apiCategoriesList } from '../src/api/api';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["home_view"], apiCategoriesList, {
+  await queryClient.prefetchQuery(['home_view'], () => apiCategoriesList(), {
     staleTime: Infinity,
   });
 
@@ -20,23 +20,19 @@ export async function getStaticProps() {
 }
 
 export default function HomePage() {
-  const { data,  error } = useApiCategoriesList();
+  const { data, error } = useApiCategoriesList();
   if (error) return <p>Error :(</p>;
 
   return (
     <>
       <Welcome />
       <>
-      {data?.map
-
-        ((category: Category) => (
-          <div key={category.id}>
+        {data?.map((category: Category) => (
+          <div key={category.slug}>
             <h2>{category.name}</h2>
-            <img src = {category.image} alt = {category.name} />
-</div>
-        ))
-
-      }
+            <img src={category.image || undefined} alt={category.name} />
+          </div>
+        ))}
       </>
       <ColorSchemeToggle />
     </>
