@@ -322,7 +322,7 @@ SPECTACULAR_SETTINGS = {
     "TITLE": "Nejdej API",
     "DESCRIPTION": "Documentation of API endpoints of Nejdej",
     "VERSION": "1.0.0",
-    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
     "SERVERS": [
         {"url": "http://127.0.0.1:8000", "description": "Local Development server"},
         {"url": "https://nejdej.com", "description": "Production server"},
