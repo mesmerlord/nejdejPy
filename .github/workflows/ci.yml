@@ -64,9 +64,6 @@ jobs:
 
   frontend_build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
 
     steps:
       - name: Checkout Code Repository
@@ -77,15 +74,17 @@ jobs:
         with:
           node-version: "16"
           cache: "yarn"
-
-      - name: Go into frontend folder
-        run: cd frontend
+          cache-dependency-path: |
+            frontend/yarn.lock
 
       - name: Install modules
         run: yarn install --frozen-lockfile
+        working-directory: ./frontend
 
       - name: Run tests
         run: yarn test
+        working-directory: ./frontend
 
       - name: Build the test stack
         run: yarn build
+        working-directory: ./frontend
