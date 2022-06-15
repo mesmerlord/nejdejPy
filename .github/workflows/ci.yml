@@ -77,14 +77,14 @@ jobs:
           cache-dependency-path: |
             frontend/yarn.lock
 
-      - name: Go into frontend folder
-        run: cd frontend
-
       - name: Install modules
         run: yarn install --frozen-lockfile
+        working-directory: ./frontend
 
       - name: Run tests
         run: yarn test
+        working-directory: ./frontend
 
       - name: Build the test stack
         run: yarn build
+        working-directory: ./frontend
