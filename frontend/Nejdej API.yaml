@@ -9,11 +9,11 @@ paths:
       operationId: api_categories_list
       description: Return a list of all the existing categories.
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -26,7 +26,7 @@ paths:
     post:
       operationId: api_categories_create
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -40,9 +40,9 @@ paths:
               $ref: '#/components/schemas/CategoryRequest'
         required: true
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '201':
           content:
@@ -55,18 +55,18 @@ paths:
       operationId: api_categories_retrieve
       description: Return the given category.
       parameters:
-      - in: path
-        name: slug
-        schema:
-          type: string
-        description: A unique value identifying this Category.
-        required: true
+        - in: path
+          name: slug
+          schema:
+            type: string
+          description: A unique value identifying this Category.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -77,14 +77,14 @@ paths:
     patch:
       operationId: api_categories_partial_update
       parameters:
-      - in: path
-        name: slug
-        schema:
-          type: string
-        description: A unique value identifying this Category.
-        required: true
+        - in: path
+          name: slug
+          schema:
+            type: string
+          description: A unique value identifying this Category.
+          required: true
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -97,9 +97,9 @@ paths:
             schema:
               $ref: '#/components/schemas/PatchedCategoryRequest'
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -110,18 +110,18 @@ paths:
     delete:
       operationId: api_categories_destroy
       parameters:
-      - in: path
-        name: slug
-        schema:
-          type: string
-        description: A unique value identifying this Category.
-        required: true
+        - in: path
+          name: slug
+          schema:
+            type: string
+          description: A unique value identifying this Category.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '204':
           description: No response body
@@ -130,10 +130,10 @@ paths:
       operationId: api_categories_seed_inital_retrieve
       description: Seed the database with categories from Bazos.
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
+        - cookieAuth: []
+        - tokenAuth: []
       responses:
         '200':
           content:
@@ -146,11 +146,11 @@ paths:
       operationId: api_listing_views_list
       description: Return a list of all the listing views.
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -163,7 +163,7 @@ paths:
     post:
       operationId: api_listing_views_create
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -177,9 +177,9 @@ paths:
               $ref: '#/components/schemas/ListingViewRequest'
         required: true
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '201':
           content:
@@ -192,18 +192,18 @@ paths:
       operationId: api_listing_views_retrieve
       description: Return the given listing view.
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this Listing View.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this Listing View.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -214,14 +214,14 @@ paths:
     patch:
       operationId: api_listing_views_partial_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this Listing View.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this Listing View.
+          required: true
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -234,9 +234,9 @@ paths:
             schema:
               $ref: '#/components/schemas/PatchedListingViewRequest'
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -247,18 +247,18 @@ paths:
     delete:
       operationId: api_listing_views_destroy
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this Listing View.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this Listing View.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '204':
           description: No response body
@@ -267,53 +267,53 @@ paths:
       operationId: api_listings_list
       description: Return a list of all the existing listings.
       parameters:
-      - in: query
-        name: category_slug
-        schema:
-          type: string
-        description: Exactly matches given category slug
-      - in: query
-        name: description_search
-        schema:
-          type: string
-        description: Contains given string in description
-      - name: ordering
-        required: false
-        in: query
-        description: Which field to use when ordering the results.
-        schema:
-          type: string
-      - name: search
-        required: false
-        in: query
-        description: A search term.
-        schema:
-          type: string
-      - in: query
-        name: status
-        schema:
-          type: array
-          items:
+        - in: query
+          name: category_slug
+          schema:
             type: string
-        description: '[(''DF'', ''Draft''), (''PB'', ''Published''), (''DN'', ''Denied'')]'
-        explode: true
-        style: form
-      - in: query
-        name: sub_category_slug
-        schema:
-          type: string
-        description: Exactly matches given sub category slug
-      - in: query
-        name: title_search
-        schema:
-          type: string
-        description: Contains given string in title
+          description: Exactly matches given category slug
+        - in: query
+          name: description_search
+          schema:
+            type: string
+          description: Contains given string in description
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+        - in: query
+          name: status
+          schema:
+            type: array
+            items:
+              type: string
+          description: "[('DF', 'Draft'), ('PB', 'Published'), ('DN', 'Denied')]"
+          explode: true
+          style: form
+        - in: query
+          name: sub_category_slug
+          schema:
+            type: string
+          description: Exactly matches given sub category slug
+        - in: query
+          name: title_search
+          schema:
+            type: string
+          description: Contains given string in title
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -326,7 +326,7 @@ paths:
     post:
       operationId: api_listings_create
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -340,9 +340,9 @@ paths:
               $ref: '#/components/schemas/ListingRequest'
         required: true
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '201':
           content:
@@ -355,19 +355,19 @@ paths:
       operationId: api_listings_retrieve
       description: Return the given listing.
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-          format: uuid
-        description: A UUID string identifying this Listing.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+          description: A UUID string identifying this Listing.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -378,15 +378,15 @@ paths:
     patch:
       operationId: api_listings_partial_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-          format: uuid
-        description: A UUID string identifying this Listing.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+          description: A UUID string identifying this Listing.
+          required: true
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -399,9 +399,9 @@ paths:
             schema:
               $ref: '#/components/schemas/PatchedListingRequest'
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -412,19 +412,19 @@ paths:
     delete:
       operationId: api_listings_destroy
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-          format: uuid
-        description: A UUID string identifying this Listing.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+          description: A UUID string identifying this Listing.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '204':
           description: No response body
@@ -433,11 +433,11 @@ paths:
       operationId: api_reviews_list
       description: Return a list of all the existing reviews.
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -450,7 +450,7 @@ paths:
     post:
       operationId: api_reviews_create
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -464,9 +464,9 @@ paths:
               $ref: '#/components/schemas/ReviewRequest'
         required: true
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '201':
           content:
@@ -479,18 +479,18 @@ paths:
       operationId: api_reviews_retrieve
       description: Return the given review.
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this Review.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this Review.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -501,14 +501,14 @@ paths:
     patch:
       operationId: api_reviews_partial_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this Review.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this Review.
+          required: true
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -521,9 +521,9 @@ paths:
             schema:
               $ref: '#/components/schemas/PatchedReviewRequest'
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -534,18 +534,18 @@ paths:
     delete:
       operationId: api_reviews_destroy
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this Review.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this Review.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '204':
           description: No response body
@@ -554,38 +554,38 @@ paths:
       operationId: api_sub_categories_list
       description: Return a list of all the existing Subcategories.
       parameters:
-      - in: query
-        name: category
-        schema:
-          type: string
-      - in: query
-        name: description__contains
-        schema:
-          type: string
-      - in: query
-        name: is_active
-        schema:
-          type: boolean
-      - in: query
-        name: name
-        schema:
-          type: string
-      - in: query
-        name: name__contains
-        schema:
-          type: string
-      - name: ordering
-        required: false
-        in: query
-        description: Which field to use when ordering the results.
-        schema:
-          type: string
+        - in: query
+          name: category
+          schema:
+            type: string
+        - in: query
+          name: description__contains
+          schema:
+            type: string
+        - in: query
+          name: is_active
+          schema:
+            type: boolean
+        - in: query
+          name: name
+          schema:
+            type: string
+        - in: query
+          name: name__contains
+          schema:
+            type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -598,7 +598,7 @@ paths:
     post:
       operationId: api_sub_categories_create
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -612,9 +612,9 @@ paths:
               $ref: '#/components/schemas/SubCategoryRequest'
         required: true
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '201':
           content:
@@ -627,18 +627,18 @@ paths:
       operationId: api_sub_categories_retrieve
       description: Return the given Subcategory.
       parameters:
-      - in: path
-        name: slug
-        schema:
-          type: string
-        description: A unique value identifying this Sub Category.
-        required: true
+        - in: path
+          name: slug
+          schema:
+            type: string
+          description: A unique value identifying this Sub Category.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -649,14 +649,14 @@ paths:
     patch:
       operationId: api_sub_categories_partial_update
       parameters:
-      - in: path
-        name: slug
-        schema:
-          type: string
-        description: A unique value identifying this Sub Category.
-        required: true
+        - in: path
+          name: slug
+          schema:
+            type: string
+          description: A unique value identifying this Sub Category.
+          required: true
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -669,9 +669,9 @@ paths:
             schema:
               $ref: '#/components/schemas/PatchedSubCategoryRequest'
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -682,18 +682,18 @@ paths:
     delete:
       operationId: api_sub_categories_destroy
       parameters:
-      - in: path
-        name: slug
-        schema:
-          type: string
-        description: A unique value identifying this Sub Category.
-        required: true
+        - in: path
+          name: slug
+          schema:
+            type: string
+          description: A unique value identifying this Sub Category.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '204':
           description: No response body
@@ -701,11 +701,11 @@ paths:
     get:
       operationId: api_users_list
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -719,19 +719,19 @@ paths:
     get:
       operationId: api_users_retrieve
       parameters:
-      - in: path
-        name: username
-        schema:
-          type: string
-          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
-            only.
-        required: true
+        - in: path
+          name: username
+          schema:
+            type: string
+            description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+              only.
+          required: true
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -742,15 +742,15 @@ paths:
     put:
       operationId: api_users_update
       parameters:
-      - in: path
-        name: username
-        schema:
-          type: string
-          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
-            only.
-        required: true
+        - in: path
+          name: username
+          schema:
+            type: string
+            description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+              only.
+          required: true
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -764,9 +764,9 @@ paths:
               $ref: '#/components/schemas/UserRequest'
         required: true
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -777,15 +777,15 @@ paths:
     patch:
       operationId: api_users_partial_update
       parameters:
-      - in: path
-        name: username
-        schema:
-          type: string
-          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
-            only.
-        required: true
+        - in: path
+          name: username
+          schema:
+            type: string
+            description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+              only.
+          required: true
       tags:
-      - api
+        - api
       requestBody:
         content:
           application/json:
@@ -798,9 +798,9 @@ paths:
             schema:
               $ref: '#/components/schemas/PatchedUserRequest'
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -812,11 +812,11 @@ paths:
     get:
       operationId: api_users_me_retrieve
       tags:
-      - api
+        - api
       security:
-      - cookieAuth: []
-      - tokenAuth: []
-      - {}
+        - cookieAuth: []
+        - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -828,7 +828,7 @@ paths:
     post:
       operationId: auth_token_create
       tags:
-      - auth-token
+        - auth-token
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -842,8 +842,8 @@ paths:
               $ref: '#/components/schemas/AuthTokenRequest'
         required: true
       security:
-      - cookieAuth: []
-      - tokenAuth: []
+        - cookieAuth: []
+        - tokenAuth: []
       responses:
         '200':
           content:
@@ -860,7 +860,7 @@ components:
           type: string
           readOnly: true
       required:
-      - token
+        - token
     AuthTokenRequest:
       type: object
       properties:
@@ -873,8 +873,8 @@ components:
           writeOnly: true
           minLength: 1
       required:
-      - password
-      - username
+        - password
+        - username
     Category:
       type: object
       properties:
@@ -903,10 +903,10 @@ components:
         is_active:
           type: boolean
       required:
-      - created_at
-      - name
-      - slug
-      - updated_at
+        - created_at
+        - name
+        - slug
+        - updated_at
     CategoryRequest:
       type: object
       properties:
@@ -929,8 +929,8 @@ components:
         is_active:
           type: boolean
       required:
-      - name
-      - slug
+        - name
+        - slug
     Listing:
       type: object
       properties:
@@ -939,7 +939,7 @@ components:
           format: uuid
         views:
           allOf:
-          - $ref: '#/components/schemas/ListingView'
+            - $ref: '#/components/schemas/ListingView'
           readOnly: true
         listing_images:
           type: array
@@ -954,7 +954,7 @@ components:
         status:
           type: string
           readOnly: true
-          description: '[(''DF'', ''Draft''), (''PB'', ''Published''), (''DN'', ''Denied'')]'
+          description: "[('DF', 'Draft'), ('PB', 'Published'), ('DN', 'Denied')]"
         price:
           type: string
           format: decimal
@@ -964,14 +964,14 @@ components:
         sub_category:
           type: string
       required:
-      - id
-      - listing_images
-      - price
-      - status
-      - sub_category
-      - title
-      - user
-      - views
+        - id
+        - listing_images
+        - price
+        - status
+        - sub_category
+        - title
+        - user
+        - views
     ListingImage:
       type: object
       properties:
@@ -982,8 +982,8 @@ components:
           type: string
           format: uri
       required:
-      - id
-      - image
+        - id
+        - image
     ListingImageRequest:
       type: object
       properties:
@@ -991,7 +991,7 @@ components:
           type: string
           format: binary
       required:
-      - image
+        - image
     ListingRequest:
       type: object
       properties:
@@ -1019,12 +1019,12 @@ components:
           type: string
           minLength: 1
       required:
-      - id
-      - listing_images
-      - price
-      - sub_category
-      - title
-      - user
+        - id
+        - listing_images
+        - price
+        - sub_category
+        - title
+        - user
     ListingView:
       type: object
       properties:
@@ -1055,8 +1055,8 @@ components:
           type: string
           format: uuid
       required:
-      - id
-      - listing
+        - id
+        - listing
     ListingViewRequest:
       type: object
       properties:
@@ -1084,7 +1084,7 @@ components:
           type: string
           format: uuid
       required:
-      - listing
+        - listing
     PatchedCategoryRequest:
       type: object
       properties:
@@ -1235,7 +1235,7 @@ components:
         status:
           type: string
           readOnly: true
-          description: '[(''DF'', ''Draft''), (''PB'', ''Published''), (''DN'', ''Denied'')]'
+          description: "[('DF', 'Draft'), ('PB', 'Published'), ('DN', 'Denied')]"
         user:
           type: integer
         listing:
@@ -1243,12 +1243,12 @@ components:
           format: uuid
           nullable: true
       required:
-      - created_at
-      - id
-      - status
-      - title
-      - updated_at
-      - user
+        - created_at
+        - id
+        - status
+        - title
+        - updated_at
+        - user
     ReviewRequest:
       type: object
       properties:
@@ -1266,8 +1266,8 @@ components:
           format: uuid
           nullable: true
       required:
-      - title
-      - user
+        - title
+        - user
     SubCategory:
       type: object
       properties:
@@ -1298,11 +1298,11 @@ components:
         category:
           type: string
       required:
-      - category
-      - created_at
-      - name
-      - slug
-      - updated_at
+        - category
+        - created_at
+        - name
+        - slug
+        - updated_at
     SubCategoryRequest:
       type: object
       properties:
@@ -1328,9 +1328,9 @@ components:
           type: string
           minLength: 1
       required:
-      - category
-      - name
-      - slug
+        - category
+        - name
+        - slug
     User:
       type: object
       properties:
@@ -1349,8 +1349,8 @@ components:
           format: uri
           readOnly: true
       required:
-      - url
-      - username
+        - url
+        - username
     UserRequest:
       type: object
       properties:
@@ -1366,7 +1366,7 @@ components:
           title: Name of User
           maxLength: 255
       required:
-      - username
+        - username
   securitySchemes:
     cookieAuth:
       type: apiKey
@@ -1378,7 +1378,7 @@ components:
       name: Authorization
       description: Token-based authentication with required prefix "Token"
 servers:
-- url: http://127.0.0.1:8000
-  description: Local Development server
-- url: https://nejdej.com
-  description: Production server
+  - url: http://127.0.0.1:8000
+    description: Local Development server
+  - url: https://nejdej.com
+    description: Production server

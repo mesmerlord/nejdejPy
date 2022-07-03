@@ -29,8 +29,8 @@ export async function getServerSideProps(ctx) {
   const { slug } = ctx.params;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(
-    getApiSubCategoriesListQueryKey({ category_slug: slug }),
-    () => apiSubCategoriesList({ category_slug: slug }),
+    getApiSubCategoriesListQueryKey({ category: slug }),
+    () => apiSubCategoriesList({ category: slug }),
     {
       staleTime: Infinity,
     }
@@ -53,7 +53,7 @@ const CategoryViewPage = () => {
   const slug = useRouter().query.slug as string;
   const locale = useRouter().locale;
 
-  const { data: subCategories } = useApiSubCategoriesList({ category_slug: slug });
+  const { data: subCategories } = useApiSubCategoriesList({ category: slug });
   const { data: listings } = useApiListingsList({ category_slug: slug });
 
   return (
