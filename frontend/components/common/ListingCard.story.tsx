@@ -1,23 +1,36 @@
-import ListingCard from './ListingCard';
-
+import ListingCard, { ListingCardProps } from './ListingCard';
+import { Story } from '@storybook/react';
 export default {
   title: 'ListingCard',
   component: ListingCard,
 };
 
-const Template = (args) => <ListingCard {...args} />;
+const Template: Story<ListingCardProps> = (args) => <ListingCard {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
   listing: {
     id: '1',
-    photos: [
+    title: 'Listing 1',
+    price: '100',
+    listing_images: [
       {
-        url: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+        id: 1,
+        image: 'https://via.placeholder.com/150',
       },
     ],
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe',
-    title: 'Classic Tour',
+    views: {
+      id: 1,
+      daily: 1,
+      weekly: 1,
+      monthly: 1,
+      yearly: 1,
+      total: 1,
+      listing: '1',
+    },
+    description: 'Something something',
+    status: 'PB',
+    user: 1,
+    sub_category: 'something',
   },
 };

@@ -13,6 +13,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -41,6 +42,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '201':
           content:
@@ -64,6 +66,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -96,6 +99,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -117,6 +121,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '204':
           description: No response body
@@ -145,6 +150,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -173,6 +179,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '201':
           content:
@@ -196,6 +203,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -228,6 +236,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -249,6 +258,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '204':
           description: No response body
@@ -256,11 +266,54 @@ paths:
     get:
       operationId: api_listings_list
       description: Return a list of all the existing listings.
+      parameters:
+        - in: query
+          name: category_slug
+          schema:
+            type: string
+          description: Exactly matches given category slug
+        - in: query
+          name: description_search
+          schema:
+            type: string
+          description: Contains given string in description
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+        - in: query
+          name: status
+          schema:
+            type: array
+            items:
+              type: string
+          description: "[('DF', 'Draft'), ('PB', 'Published'), ('DN', 'Denied')]"
+          explode: true
+          style: form
+        - in: query
+          name: sub_category_slug
+          schema:
+            type: string
+          description: Exactly matches given sub category slug
+        - in: query
+          name: title_search
+          schema:
+            type: string
+          description: Contains given string in title
       tags:
         - api
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -289,6 +342,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '201':
           content:
@@ -313,6 +367,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -346,6 +401,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -368,6 +424,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '204':
           description: No response body
@@ -380,6 +437,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -408,6 +466,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '201':
           content:
@@ -431,6 +490,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -463,6 +523,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -484,6 +545,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '204':
           description: No response body
@@ -491,11 +553,39 @@ paths:
     get:
       operationId: api_sub_categories_list
       description: Return a list of all the existing Subcategories.
+      parameters:
+        - in: query
+          name: category
+          schema:
+            type: string
+        - in: query
+          name: description__contains
+          schema:
+            type: string
+        - in: query
+          name: is_active
+          schema:
+            type: boolean
+        - in: query
+          name: name
+          schema:
+            type: string
+        - in: query
+          name: name__contains
+          schema:
+            type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
       tags:
         - api
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -524,6 +614,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '201':
           content:
@@ -547,6 +638,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -579,6 +671,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -600,6 +693,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '204':
           description: No response body
@@ -611,6 +705,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -636,6 +731,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -670,6 +766,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -703,6 +800,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -718,6 +816,7 @@ paths:
       security:
         - cookieAuth: []
         - tokenAuth: []
+        - {}
       responses:
         '200':
           content:
@@ -842,15 +941,15 @@ components:
           allOf:
             - $ref: '#/components/schemas/ListingView'
           readOnly: true
+        listing_images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListingImage'
         title:
           type: string
           maxLength: 255
         description:
           type: string
-          nullable: true
-        image:
-          type: string
-          format: uri
           nullable: true
         status:
           type: string
@@ -866,28 +965,49 @@ components:
           type: string
       required:
         - id
+        - listing_images
         - price
         - status
         - sub_category
         - title
         - user
         - views
+    ListingImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        image:
+          type: string
+          format: uri
+      required:
+        - id
+        - image
+    ListingImageRequest:
+      type: object
+      properties:
+        image:
+          type: string
+          format: binary
+      required:
+        - image
     ListingRequest:
       type: object
       properties:
         id:
           type: string
           format: uuid
+        listing_images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListingImageRequest'
         title:
           type: string
           minLength: 1
           maxLength: 255
         description:
           type: string
-          nullable: true
-        image:
-          type: string
-          format: binary
           nullable: true
         price:
           type: string
@@ -900,6 +1020,7 @@ components:
           minLength: 1
       required:
         - id
+        - listing_images
         - price
         - sub_category
         - title
@@ -991,16 +1112,16 @@ components:
         id:
           type: string
           format: uuid
+        listing_images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListingImageRequest'
         title:
           type: string
           minLength: 1
           maxLength: 255
         description:
           type: string
-          nullable: true
-        image:
-          type: string
-          format: binary
           nullable: true
         price:
           type: string

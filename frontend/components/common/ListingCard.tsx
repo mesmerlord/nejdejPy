@@ -1,28 +1,17 @@
 import { Button, Card, Group, Image, Text } from '@mantine/core';
+import { Listing } from '../../src/model';
 import LinkText from './LinkText';
 
-type Photo = {
-  id?: string;
-  url: string;
-};
-
-type SingleListing = {
-  id: string;
-  photos: Photo[];
-  description: string | null;
-  title: string;
-};
-
-interface ListingCardProps {
-  listing: SingleListing;
+export interface ListingCardProps {
+  listing: Listing;
 }
 
-const ListingCard = ({ listing }: ListingCardProps) => (
+const ListingCard = ({ listing }) => (
   <LinkText href={`/listing/${listing.id}`}>
     <Card shadow="sm">
       <Card.Section>
         <Image
-          src={`${listing?.photos[0]?.url}?=${Math.floor(Math.random() * 1000)}`}
+          src={`${listing?.listing_images[0].image}?=${Math.floor(Math.random() * 1000)}`}
           height={160}
         />
       </Card.Section>

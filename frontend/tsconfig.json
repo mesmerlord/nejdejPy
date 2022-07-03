@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -17,5 +17,11 @@
     "noImplicitAny": false
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "src/api", "src/auth-token", "orval.config.ts", "api.msw.ts"]
+  "exclude": [
+    "node_modules",
+    "src/api/**/*",
+    "src/auth-token",
+    "orval.config.ts",
+    "src/api/api.msw.ts"
+  ]
 }

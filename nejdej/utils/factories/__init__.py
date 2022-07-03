@@ -75,7 +75,6 @@ class ListingFactory(factory.django.DjangoModelFactory):
     id = factory.LazyAttribute(lambda x: faker.uuid4())
     title = factory.LazyAttribute(lambda x: faker.paragraph(nb_sentences=1))
     description = factory.LazyAttribute(lambda x: faker.paragraph(nb_sentences=3))
-    image = factory.django.ImageField(color="red")
     status = factory.Iterator(Listing.StatusChoices)
     user = factory.Iterator(User.objects.all())
     sub_category = factory.Iterator(SubCategory.objects.all())
@@ -83,6 +82,17 @@ class ListingFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = "listings.Listing"
+        django_get_or_create = ("id",)
+
+class ListingImageFactory(factory.django.DjangoModelFactory):
+    """ListingImage factory."""
+
+    id = factory.Sequence(lambda n: n + 1)
+    image = factory.django.ImageField(color="pink")
+    listing = factory.Iterator(Listing.objects.all())
+
+    class Meta:
+        model = "listings.ListingImage"
         django_get_or_create = ("id",)
 
 

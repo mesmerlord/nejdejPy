@@ -6,13 +6,14 @@
  * OpenAPI spec version: 1.0.0
  */
 import type { ListingView } from './listingView';
+import type { ListingImage } from './listingImage';
 
 export interface Listing {
   id: string;
   readonly views: ListingView;
+  listing_images: ListingImage[];
   title: string;
   description?: string | null;
-  image?: string | null;
   /** [('DF', 'Draft'), ('PB', 'Published'), ('DN', 'Denied')] */
   readonly status: string;
   price: string;
