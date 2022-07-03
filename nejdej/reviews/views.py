@@ -10,7 +10,6 @@ from .serializers import ReviewSerializer
 @extend_schema_view(
     retrieve=extend_schema(description="Return the given review."),
     list=extend_schema(description="Return a list of all the existing reviews."),
-    operation_id="reviews",
 )
 class ReviewViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
     queryset = Review.objects.all()

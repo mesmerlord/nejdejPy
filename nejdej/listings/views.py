@@ -11,7 +11,6 @@ from .serializers import ListingSerializer
 @extend_schema_view(
     retrieve=extend_schema(description="Return the given listing."),
     list=extend_schema(description="Return a list of all the existing listings."),
-    operation_id="listings",
 )
 class ListingViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
     queryset = Listing.objects.all()
