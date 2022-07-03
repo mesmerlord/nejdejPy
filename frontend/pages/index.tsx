@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
+
   await queryClient.prefetchQuery(['home_view'], () => apiCategoriesList(), {
     staleTime: Infinity,
   });

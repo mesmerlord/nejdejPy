@@ -5,56 +5,58 @@
  * Documentation of API endpoints of Nejdej
  * OpenAPI spec version: 1.0.0
  */
-import { useMutation, UseMutationOptions, MutationFunction } from 'react-query';
-import type { AuthToken, AuthTokenRequest } from '.././model';
-import { customInstance } from '.././api/custom-instance';
+import {
+  useMutation,
+  UseMutationOptions,
+  MutationFunction
+} from 'react-query'
+import type {
+  AuthToken,
+  AuthTokenRequest
+} from '.././model'
+import { customInstance } from '.././api/custom-instance'
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
-type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
+      type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
-export const authTokenCreate = (authTokenRequest: AuthTokenRequest) => {
-  const formUrlEncoded = new URLSearchParams();
-  formUrlEncoded.append('username', authTokenRequest.username);
-  formUrlEncoded.append('password', authTokenRequest.password);
 
-  return customInstance<AuthToken>({
-    url: `/auth-token/`,
-    method: 'post',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    data: formUrlEncoded,
-  });
-};
+export const authTokenCreate = (
+    authTokenRequest: AuthTokenRequest,
+ 
+) => {const formUrlEncoded = new URLSearchParams();
+formUrlEncoded.append('username', authTokenRequest.username)
+formUrlEncoded.append('password', authTokenRequest.password)
 
-export type AuthTokenCreateMutationResult = NonNullable<
-  Awaited<ReturnType<typeof authTokenCreate>>
->;
-export type AuthTokenCreateMutationBody = AuthTokenRequest;
-export type AuthTokenCreateMutationError = unknown;
+      return customInstance<AuthToken>(
+      {url: `/auth-token/`, method: 'post',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+       data: formUrlEncoded
+    },
+      );
+    }
+  
 
-export const useAuthTokenCreate = <TError = unknown, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof authTokenCreate>>,
-    TError,
-    { data: AuthTokenRequest },
-    TContext
-  >;
-}) => {
-  const { mutation: mutationOptions } = options ?? {};
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof authTokenCreate>>,
-    { data: AuthTokenRequest }
-  > = (props) => {
-    const { data } = props ?? {};
+    export type AuthTokenCreateMutationResult = NonNullable<Awaited<ReturnType<typeof authTokenCreate>>>
+    export type AuthTokenCreateMutationBody = AuthTokenRequest
+    export type AuthTokenCreateMutationError = unknown
 
-    return authTokenCreate(data);
-  };
+    export const useAuthTokenCreate = <TError = unknown,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authTokenCreate>>, TError,{data: AuthTokenRequest}, TContext>, }
+) => {
+      const {mutation: mutationOptions} = options ?? {}
 
-  return useMutation<
-    Awaited<ReturnType<typeof authTokenCreate>>,
-    TError,
-    { data: AuthTokenRequest },
-    TContext
-  >(mutationFn, mutationOptions);
-};
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authTokenCreate>>, {data: AuthTokenRequest}> = (props) => {
+          const {data} = props ?? {};
+
+          return  authTokenCreate(data,)
+        }
+
+      return useMutation<Awaited<ReturnType<typeof authTokenCreate>>, TError, {data: AuthTokenRequest}, TContext>(mutationFn, mutationOptions)
+    }
+    

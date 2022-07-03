@@ -1,11 +1,11 @@
 module.exports = {
-  petstore: {
+  nejdej: {
     input: {
-      target: './api_spec.yaml',
+      target: './Nejdej API.yaml',
     },
     output: {
       mode: 'tags-split',
-      target: 'src/petstore.ts',
+      target: 'src/nejdej.ts',
       schemas: 'src/model',
       client: 'react-query',
       mock: true,
@@ -14,6 +14,13 @@ module.exports = {
         mutator: {
           path: 'src/api/custom-instance.ts',
           name: 'customInstance',
+        },
+        query: {
+          useQuery: true,
+          useInfinite: true,
+          options: {
+            staleTime: Infinity,
+          },
         },
       },
     },

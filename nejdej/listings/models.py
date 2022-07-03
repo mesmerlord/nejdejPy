@@ -14,7 +14,6 @@ class Listing(AbstractClient):
     id = models.UUIDField(primary_key=True)
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    image = models.ImageField(storage=ListingImageStorage(), null=True, blank=True)
     status = models.CharField(
         blank=False,
         choices=StatusChoices.choices,
@@ -37,3 +36,14 @@ class Listing(AbstractClient):
         if not self.id:
             self.status = "DF"
         super().save(*args, **kwargs)
+
+class ListingImage(AbstractClient):
+    listing = models.ForeignKey("listings.Listing", on_delete=models.CASCADE, related_name = "listing_images")
+    image = models.ImageField(storage=ListingImageStorage())
+
+    class Meta:
+        verbose_name = "Listing Image"
+        verbose_name_plural = "Listing Images"
+
+    def __str__(self):
+        return self.listing.title
