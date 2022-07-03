@@ -8,18 +8,23 @@ from nejdej.categories.tasks import seed_categories_task
 from nejdej.utils.mixins import HttpMethodRestrictionViewSet
 
 from .models import Category, SubCategory
-from .serializers import CategorySerializer, SubCategorySerializer
+from .serializers import CategoryListingManySerializer, CategorySerializer, SubCategorySerializer
 
 
 @extend_schema_view(
     retrieve=extend_schema(description="Return the given category."),
     list=extend_schema(description="Return a list of all the existing categories."),
-    operation_id="categories",
 )
 class CategoryViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = None
+
+    def get_serializer_class(self):
+        print("test")
+        if self.action in ["retreive"]:
+            return CategoryListingManySerializer
+        return super().get_serializer_class()
 
     @extend_schema(
         description="Seed the database with categories from Bazos.",
@@ -36,12 +41,19 @@ class CategoryViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
         """
         seed_categories_task.delay()
         return Response("Categories seeded.")
-
+    
+    @extend_schema(
+        responses=CategoryListingManySerializer,
+    )
+    def retrieve(self, request, pk, *args, **kwargs):
+        """
+        Return the given category.
+        """
+        return super().retrieve(request, pk, *args, **kwargs)
 
 @extend_schema_view(
     retrieve=extend_schema(description="Return the given Subcategory."),
     list=extend_schema(description="Return a list of all the existing Subcategories."),
-    operation_id="sub_categories",
 )
 class SubCategoryViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
     queryset = SubCategory.objects.all()

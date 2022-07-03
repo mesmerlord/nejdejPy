@@ -10,7 +10,6 @@ from .serializers import ListingViewSerializer
 @extend_schema_view(
     retrieve=extend_schema(description="Return the given listing view."),
     list=extend_schema(description="Return a list of all the listing views."),
-    operation_id="listing_view",
 )
 class ListingViewViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
     queryset = ListingView.objects.all()
