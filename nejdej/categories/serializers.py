@@ -19,11 +19,15 @@ class CategoryListingSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class CategoryListingManySerializer(serializers.ModelSerializer):
-    sub_categories = SubCategorySerializer(many=True)
-    listings = CategoryListingSerializer(many=True)
+    subcategory_set = SubCategorySerializer(many=True)
+    listings = serializers.SerializerMethodField()
 
     class Meta:
         model = Category
         fields = "__all__"
 
+    def get_listings(self, obj):
+        listings = Listing.objects.filter(sub_category__category=obj)
+        print(listings)
+        return CategoryListingSerializer(listings, many=True).data
     

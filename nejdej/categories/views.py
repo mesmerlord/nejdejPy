@@ -21,8 +21,7 @@ class CategoryViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
     pagination_class = None
 
     def get_serializer_class(self):
-        print("test")
-        if self.action in ["retreive"]:
+        if self.action in ["retrieve"]:
             return CategoryListingManySerializer
         return super().get_serializer_class()
 

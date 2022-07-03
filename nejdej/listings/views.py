@@ -31,5 +31,4 @@ class ListingViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
         else:
             new_view = {listing_id: 1}
         cache.set("views", new_view, timeout=25)
-        print(view)
         return super().retrieve(request, *args, **kwargs)

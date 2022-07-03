@@ -30,3 +30,6 @@ boto3
 
 pydotplus
 graphviz
+
+uvicorn[standard]==0.14.0  # https://github.com/encode/uvicorn
+gunicorn==20.1.0  # https://github.com/benoitc/gunicorn
