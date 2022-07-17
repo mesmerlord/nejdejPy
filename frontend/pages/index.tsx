@@ -6,6 +6,7 @@ import { dehydrate, QueryClient } from 'react-query';
 import { apiCategoriesList } from '../src/api/api';
 import LinkText from '../components/common/LinkText';
 import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -24,13 +25,15 @@ export async function getStaticProps() {
 export default function HomePage() {
   const { data, error } = useApiCategoriesList();
   const router = useRouter();
+  const { t, lang } = useTranslation('common');
+  const hello = t('title');
 
   if (error) return <p>Error :(</p>;
 
   return (
     <>
       <Box sx={{ margin: '30px' }}>
-        <Title>Hello</Title>
+        <Title>{hello}</Title>
         <Grid>
           {data?.map((category) => (
             <Col span={12} sm={6} md={4} xs={6} xl={3} key={category.slug}>

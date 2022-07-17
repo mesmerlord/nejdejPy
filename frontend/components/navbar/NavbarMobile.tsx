@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Burger } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { Burger, NativeSelect } from '@mantine/core';
 import { Container } from '@mantine/core';
 import { Group } from '@mantine/core';
 import { Title } from '@mantine/core';
@@ -9,11 +9,19 @@ import LinkText from '../common/LinkText';
 import Sidebar from './Sidebar';
 import { useStore } from '../../src/store/store';
 import { routes } from '../../src/utils/routes';
+import { useRouter } from 'next/router';
 
 const NavbarMobile = () => {
   const [opened, setOpened] = useState(false);
   const siteName = useStore((state) => state.siteName);
-  const darkMode = useStore((state) => state.darkMode);
+  const router = useRouter();
+  const { pathname, asPath, query } = router;
+  const [navBarState, setNavBarState] = useState({
+    locale: router.locale || 'sk',
+  });
+  useEffect(() => {
+    router.push({ pathname, query }, asPath, { locale: navBarState.locale });
+  }, [navBarState]);
   return (
     <>
       <Paper
@@ -35,6 +43,17 @@ const NavbarMobile = () => {
             </LinkText>
             <Divider orientation="vertical" />
             <Group>
+              <NativeSelect
+                data={[
+                  { value: 'en', label: 'EN' },
+                  { value: 'sk', label: 'SK' },
+                ]}
+                required
+                onChange={(e) => {
+                  setNavBarState({ locale: e.target.value });
+                }}
+                value={navBarState.locale}
+              />
               <Burger
                 opened={opened}
                 onClick={() => setOpened((o) => !o)}
