@@ -86,6 +86,7 @@ class ListingFactory(factory.django.DjangoModelFactory):
         model = "listings.Listing"
         django_get_or_create = ("id",)
 
+
 class ListingImageFactory(factory.django.DjangoModelFactory):
     """ListingImage factory."""
 

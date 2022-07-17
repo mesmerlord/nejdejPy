@@ -8,6 +8,6 @@ class UsersConfig(AppConfig):
 
     def ready(self):
         try:
-            from users.signals import update_user_info # noqa F401
+            from users.signals import update_user_info  # noqa F401
         except ImportError:
             pass

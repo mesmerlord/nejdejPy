@@ -32,9 +32,11 @@ def seed_categories():
         created = CategoryFactory.create()
         print(f"Added category : {created}")
 
+
 @print_fun_name
 def seed_actual_categories_and_subcategories():
     from nejdej.categories.tasks import seed_categories_task
+
     seed_categories_task()
     print(f"Added categories")
 
@@ -86,6 +88,7 @@ def seed_review_images():
         created = ReviewImageFactory.create()
         print(f"Added review image : {created}")
 
+
 @print_fun_name
 def seed_listing_images():
     from nejdej.utils.factories import ListingImageFactory
@@ -96,7 +99,6 @@ def seed_listing_images():
 
         created = ListingImageFactory.create()
         print(f"Added listing image : {created}")
-
 
 
 def run(*args):

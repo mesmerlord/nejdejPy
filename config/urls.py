@@ -33,9 +33,9 @@ urlpatterns += [
         SpectacularSwaggerView.as_view(url_name="api-schema"),
         name="api-docs",
     ),
-    path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('rest-auth/google/', GoogleLogin.as_view(), name='google_login'),
-    path('rest-auth/facebook/', FacebookLogin.as_view(), name='fb_login'),
+    path("dj-rest-auth/", include("dj_rest_auth.urls")),
+    path("rest-auth/google/", GoogleLogin.as_view(), name="google_login"),
+    path("rest-auth/facebook/", FacebookLogin.as_view(), name="fb_login"),
 ]
 
 if settings.DEBUG:

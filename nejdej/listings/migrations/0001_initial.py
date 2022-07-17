@@ -11,39 +11,92 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('categories', '0001_initial'),
+        ("categories", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Listing',
+            name="Listing",
             fields=[
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False, unique=True)),
-                ('title', models.CharField(max_length=255)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('status', models.CharField(choices=[('DF', 'Draft'), ('PB', 'Published'), ('DN', 'Denied')], editable=False, help_text=[('DF', 'Draft'), ('PB', 'Published'), ('DN', 'Denied')], max_length=2)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('sub_category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='categories.subcategory')),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                        unique=True,
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("description", models.TextField(blank=True, null=True)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("DF", "Draft"),
+                            ("PB", "Published"),
+                            ("DN", "Denied"),
+                        ],
+                        editable=False,
+                        help_text=[
+                            ("DF", "Draft"),
+                            ("PB", "Published"),
+                            ("DN", "Denied"),
+                        ],
+                        max_length=2,
+                    ),
+                ),
+                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "sub_category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="categories.subcategory",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Listing',
-                'verbose_name_plural': 'Listings',
+                "verbose_name": "Listing",
+                "verbose_name_plural": "Listings",
             },
         ),
         migrations.CreateModel(
-            name='ListingImage',
+            name="ListingImage",
             fields=[
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False, unique=True)),
-                ('image', models.ImageField(storage=nejdej.utils.storages.ListingImageStorage(), upload_to='')),
-                ('listing', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='listing_images', to='listings.listing')),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                        unique=True,
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(
+                        storage=nejdej.utils.storages.ListingImageStorage(),
+                        upload_to="",
+                    ),
+                ),
+                (
+                    "listing",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="listing_images",
+                        to="listings.listing",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Listing Image',
-                'verbose_name_plural': 'Listing Images',
+                "verbose_name": "Listing Image",
+                "verbose_name_plural": "Listing Images",
             },
         ),
     ]

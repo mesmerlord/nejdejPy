@@ -7,14 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('listings', '0003_alter_listing_sub_category_alter_listing_user'),
-        ('views', '0001_initial'),
+        ("listings", "0003_alter_listing_sub_category_alter_listing_user"),
+        ("views", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='listingview',
-            name='listing',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='listing_view', to='listings.listing'),
+            model_name="listingview",
+            name="listing",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="listing_view",
+                to="listings.listing",
+            ),
         ),
     ]
