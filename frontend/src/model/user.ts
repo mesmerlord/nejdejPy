@@ -9,6 +9,8 @@
 export interface User {
   /** Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
   username: string;
-  name?: string;
+  first_name?: string;
+  last_name?: string | null;
   readonly url: string;
+  image?: string | null;
 }

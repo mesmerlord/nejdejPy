@@ -7,16 +7,17 @@
  */
 import type { ListingView } from './listingView';
 import type { ListingImage } from './listingImage';
+import type { ListingUser } from './listingUser';
 
 export interface Listing {
-  id: string;
+  readonly id: string;
   readonly views: ListingView;
   listing_images: ListingImage[];
+  readonly user: ListingUser;
   title: string;
   description?: string | null;
   /** [('DF', 'Draft'), ('PB', 'Published'), ('DN', 'Denied')] */
   readonly status: string;
   price: string;
-  user: number;
   sub_category: string;
 }

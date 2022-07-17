@@ -6,4 +6,4 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export type ApiListingsListParams = { category_slug?: string; description_search?: string; ordering?: string; search?: string; status?: string[]; sub_category_slug?: string; title_search?: string };
+export type ApiListingsListParams = { category_slug?: string; description_search?: string; itemsPerPage?: number; ordering?: string; page?: number; search?: string; status?: string[]; sub_category_slug?: string; title_search?: string };

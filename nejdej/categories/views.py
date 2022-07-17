@@ -10,7 +10,7 @@ from django_filters import rest_framework as filters_new
 from rest_framework.filters import OrderingFilter
 
 from .models import Category, SubCategory
-from .serializers import CategorySerializer, SubCategorySerializer
+from .serializers import CategorySerializer, CategorySubCategoryNestedSerializer, SubCategorySerializer
 
 class SubCategoryFilter(filters_new.FilterSet):
 
@@ -50,7 +50,24 @@ class CategoryViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
         """
         seed_categories_task.delay()
         return Response("Categories seeded.")
-    
+
+    @extend_schema(
+        description="Get Categories with Subcategory nested",
+        responses = CategorySubCategoryNestedSerializer(many = True)
+    )
+    @action(
+        methods=["get"],
+        detail=False,
+        pagination_class=None,
+        serializer_class=CategorySubCategoryNestedSerializer(many = True)
+    )
+    def nested_subcategories(self, request, *args, **kwargs):
+        """
+        Get Categories with Subcategory nested
+        """
+        categories = Category.objects.all()
+        serializer = CategorySubCategoryNestedSerializer(categories, many=True)
+        return Response(serializer.data)
     
 @extend_schema_view(
     retrieve=extend_schema(description="Return the given Subcategory."),

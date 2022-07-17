@@ -20,7 +20,10 @@
   "exclude": [
     "node_modules",
     "src/api/**/*",
+    "src/api/api.ts",
     "src/auth-token",
+    "src/rest-auth",
+    "src/dj-rest-auth",
     "orval.config.ts",
     "src/api/api.msw.ts"
   ]

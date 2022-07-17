@@ -7,7 +7,7 @@
  */
 
 export interface Review {
-  readonly id: number;
+  readonly id: string;
   readonly created_at: string;
   readonly updated_at: string;
   title: string;

@@ -9,5 +9,7 @@
 export interface PatchedUserRequest {
   /** Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
   username?: string;
-  name?: string;
+  first_name?: string;
+  last_name?: string | null;
+  image?: Blob | null;
 }

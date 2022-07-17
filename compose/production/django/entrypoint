@@ -30,7 +30,8 @@ try:
         host="${POSTGRES_HOST}",
         port="${POSTGRES_PORT}",
     )
-except psycopg2.OperationalError:
+except psycopg2.OperationalError as e:
+    print("Database is not ready: " + str(e), file=sys.stderr)
     sys.exit(-1)
 sys.exit(0)
 

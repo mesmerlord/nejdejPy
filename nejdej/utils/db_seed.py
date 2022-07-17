@@ -17,7 +17,7 @@ def print_fun_name(func):
 def seed_users():
     from nejdej.utils.factories import UserFactory
 
-    for _ in range(10):
+    for _ in range(5):
 
         created = UserFactory.create()
         print(f"Added user: {created}")
@@ -57,7 +57,7 @@ def seed_listings():
 
     SubCategory = apps.get_model("categories", "SubCategory")
     sub_categories = SubCategory.objects.all()
-    for _ in range(len(sub_categories) * 3):
+    for _ in range(len(sub_categories) * 2):
 
         created = ListingFactory.create()
         print(f"Added listing : {created}")

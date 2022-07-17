@@ -5,7 +5,7 @@ from django.db.models import F
 
 
 class ListingView(models.Model):
-    listing = models.OneToOneField("listings.Listing", on_delete=models.CASCADE)
+    listing = models.OneToOneField("listings.Listing", on_delete=models.CASCADE, related_name="listing_view")
     daily = models.IntegerField(default=0)
     weekly = models.IntegerField(default=0)
     monthly = models.IntegerField(default=0)

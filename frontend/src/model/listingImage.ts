@@ -7,6 +7,7 @@
  */
 
 export interface ListingImage {
-  readonly id: number;
+  readonly id: string;
+  readonly listing: string;
   image: string;
 }

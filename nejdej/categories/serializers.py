@@ -12,3 +12,9 @@ class SubCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = SubCategory
         fields = "__all__"
+
+class CategorySubCategoryNestedSerializer(serializers.ModelSerializer):
+    subcategories = SubCategorySerializer(many=True)
+    class Meta:
+        model = Category
+        fields = "__all__"

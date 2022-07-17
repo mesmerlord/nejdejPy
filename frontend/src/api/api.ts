@@ -22,13 +22,20 @@ import type {
   Category,
   CategoryRequest,
   PatchedCategoryRequest,
+  CategorySubCategoryNested,
+  ListingImage,
+  ListingImageRequest,
+  PatchedListingImageRequest,
   ListingView,
   ListingViewRequest,
   PatchedListingViewRequest,
-  Listing,
+  PaginatedListingList,
   ApiListingsListParams,
+  Listing,
   ListingRequest,
   PatchedListingRequest,
+  PaginatedReviewList,
+  ApiReviewsListParams,
   Review,
   ReviewRequest,
   PatchedReviewRequest,
@@ -36,6 +43,8 @@ import type {
   ApiSubCategoriesListParams,
   SubCategoryRequest,
   PatchedSubCategoryRequest,
+  PaginatedUserList,
+  ApiUsersListParams,
   User,
   UserRequest,
   PatchedUserRequest
@@ -282,6 +291,71 @@ export const apiCategoriesPartialUpdate = (
       return useMutation<Awaited<ReturnType<typeof apiCategoriesDestroy>>, TError, {slug: string}, TContext>(mutationFn, mutationOptions)
     }
     /**
+ * Get Categories with Subcategory nested
+ */
+export const apiCategoriesNestedSubcategoriesList = (
+    
+ signal?: AbortSignal
+) => {
+      return customInstance<CategorySubCategoryNested[]>(
+      {url: `/api/categories/nested_subcategories/`, method: 'get', signal
+    },
+      );
+    }
+  
+
+export const getApiCategoriesNestedSubcategoriesListQueryKey = () => [`/api/categories/nested_subcategories/`];
+
+    
+export type ApiCategoriesNestedSubcategoriesListInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof apiCategoriesNestedSubcategoriesList>>>
+export type ApiCategoriesNestedSubcategoriesListInfiniteQueryError = unknown
+
+export const useApiCategoriesNestedSubcategoriesListInfinite = <TData = Awaited<ReturnType<typeof apiCategoriesNestedSubcategoriesList>>, TError = unknown>(
+  options?: { query?:UseInfiniteQueryOptions<Awaited<ReturnType<typeof apiCategoriesNestedSubcategoriesList>>, TError, TData>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions} = options ?? {}
+
+  const queryKey = queryOptions?.queryKey ?? getApiCategoriesNestedSubcategoriesListQueryKey();
+
+  
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiCategoriesNestedSubcategoriesList>>> = ({ signal }) => apiCategoriesNestedSubcategoriesList(signal);
+
+  const query = useInfiniteQuery<Awaited<ReturnType<typeof apiCategoriesNestedSubcategoriesList>>, TError, TData>(queryKey, queryFn, {  staleTime: Infinity,  ...queryOptions})
+
+  return {
+    queryKey,
+    ...query
+  }
+}
+
+export type ApiCategoriesNestedSubcategoriesListQueryResult = NonNullable<Awaited<ReturnType<typeof apiCategoriesNestedSubcategoriesList>>>
+export type ApiCategoriesNestedSubcategoriesListQueryError = unknown
+
+export const useApiCategoriesNestedSubcategoriesList = <TData = Awaited<ReturnType<typeof apiCategoriesNestedSubcategoriesList>>, TError = unknown>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof apiCategoriesNestedSubcategoriesList>>, TError, TData>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions} = options ?? {}
+
+  const queryKey = queryOptions?.queryKey ?? getApiCategoriesNestedSubcategoriesListQueryKey();
+
+  
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiCategoriesNestedSubcategoriesList>>> = ({ signal }) => apiCategoriesNestedSubcategoriesList(signal);
+
+  const query = useQuery<Awaited<ReturnType<typeof apiCategoriesNestedSubcategoriesList>>, TError, TData>(queryKey, queryFn, {  staleTime: Infinity,  ...queryOptions})
+
+  return {
+    queryKey,
+    ...query
+  }
+}
+
+/**
  * Seed the database with categories from Bazos.
  */
 export const apiCategoriesSeedInitalRetrieve = (
@@ -346,7 +420,182 @@ export const useApiCategoriesSeedInitalRetrieve = <TData = Awaited<ReturnType<ty
   }
 }
 
-/**
+export const apiListingImagesCreate = (
+    listingImageRequest: ListingImageRequest,
+ 
+) => {const formData = new FormData();
+formData.append('image', listingImageRequest.image)
+
+      return customInstance<ListingImage>(
+      {url: `/api/listing-images/`, method: 'post',
+      headers: {'Content-Type': 'multipart/form-data'},
+       data: formData
+    },
+      );
+    }
+  
+
+
+    export type ApiListingImagesCreateMutationResult = NonNullable<Awaited<ReturnType<typeof apiListingImagesCreate>>>
+    export type ApiListingImagesCreateMutationBody = ListingImageRequest
+    export type ApiListingImagesCreateMutationError = unknown
+
+    export const useApiListingImagesCreate = <TError = unknown,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof apiListingImagesCreate>>, TError,{data: ListingImageRequest}, TContext>, }
+) => {
+      const {mutation: mutationOptions} = options ?? {}
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof apiListingImagesCreate>>, {data: ListingImageRequest}> = (props) => {
+          const {data} = props ?? {};
+
+          return  apiListingImagesCreate(data,)
+        }
+
+      return useMutation<Awaited<ReturnType<typeof apiListingImagesCreate>>, TError, {data: ListingImageRequest}, TContext>(mutationFn, mutationOptions)
+    }
+    /**
+ * Return the given listing image.
+ */
+export const apiListingImagesRetrieve = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      return customInstance<ListingImage>(
+      {url: `/api/listing-images/${id}/`, method: 'get', signal
+    },
+      );
+    }
+  
+
+export const getApiListingImagesRetrieveQueryKey = (id: string,) => [`/api/listing-images/${id}/`];
+
+    
+export type ApiListingImagesRetrieveInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof apiListingImagesRetrieve>>>
+export type ApiListingImagesRetrieveInfiniteQueryError = unknown
+
+export const useApiListingImagesRetrieveInfinite = <TData = Awaited<ReturnType<typeof apiListingImagesRetrieve>>, TError = unknown>(
+ id: string, options?: { query?:UseInfiniteQueryOptions<Awaited<ReturnType<typeof apiListingImagesRetrieve>>, TError, TData>, }
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions} = options ?? {}
+
+  const queryKey = queryOptions?.queryKey ?? getApiListingImagesRetrieveQueryKey(id);
+
+  
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiListingImagesRetrieve>>> = ({ signal }) => apiListingImagesRetrieve(id, signal);
+
+  const query = useInfiniteQuery<Awaited<ReturnType<typeof apiListingImagesRetrieve>>, TError, TData>(queryKey, queryFn, {enabled: !!(id),  staleTime: Infinity,  ...queryOptions})
+
+  return {
+    queryKey,
+    ...query
+  }
+}
+
+export type ApiListingImagesRetrieveQueryResult = NonNullable<Awaited<ReturnType<typeof apiListingImagesRetrieve>>>
+export type ApiListingImagesRetrieveQueryError = unknown
+
+export const useApiListingImagesRetrieve = <TData = Awaited<ReturnType<typeof apiListingImagesRetrieve>>, TError = unknown>(
+ id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof apiListingImagesRetrieve>>, TError, TData>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions} = options ?? {}
+
+  const queryKey = queryOptions?.queryKey ?? getApiListingImagesRetrieveQueryKey(id);
+
+  
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiListingImagesRetrieve>>> = ({ signal }) => apiListingImagesRetrieve(id, signal);
+
+  const query = useQuery<Awaited<ReturnType<typeof apiListingImagesRetrieve>>, TError, TData>(queryKey, queryFn, {enabled: !!(id),  staleTime: Infinity,  ...queryOptions})
+
+  return {
+    queryKey,
+    ...query
+  }
+}
+
+export const apiListingImagesPartialUpdate = (
+    id: string,
+    patchedListingImageRequest: PatchedListingImageRequest,
+ 
+) => {const formData = new FormData();
+if(patchedListingImageRequest.image !== undefined) {
+ formData.append('image', patchedListingImageRequest.image)
+ }
+
+      return customInstance<ListingImage>(
+      {url: `/api/listing-images/${id}/`, method: 'patch',
+      headers: {'Content-Type': 'multipart/form-data'},
+       data: formData
+    },
+      );
+    }
+  
+
+
+    export type ApiListingImagesPartialUpdateMutationResult = NonNullable<Awaited<ReturnType<typeof apiListingImagesPartialUpdate>>>
+    export type ApiListingImagesPartialUpdateMutationBody = PatchedListingImageRequest
+    export type ApiListingImagesPartialUpdateMutationError = unknown
+
+    export const useApiListingImagesPartialUpdate = <TError = unknown,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof apiListingImagesPartialUpdate>>, TError,{id: string;data: PatchedListingImageRequest}, TContext>, }
+) => {
+      const {mutation: mutationOptions} = options ?? {}
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof apiListingImagesPartialUpdate>>, {id: string;data: PatchedListingImageRequest}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  apiListingImagesPartialUpdate(id,data,)
+        }
+
+      return useMutation<Awaited<ReturnType<typeof apiListingImagesPartialUpdate>>, TError, {id: string;data: PatchedListingImageRequest}, TContext>(mutationFn, mutationOptions)
+    }
+    export const apiListingImagesDestroy = (
+    id: string,
+ 
+) => {
+      return customInstance<void>(
+      {url: `/api/listing-images/${id}/`, method: 'delete'
+    },
+      );
+    }
+  
+
+
+    export type ApiListingImagesDestroyMutationResult = NonNullable<Awaited<ReturnType<typeof apiListingImagesDestroy>>>
+    
+    export type ApiListingImagesDestroyMutationError = unknown
+
+    export const useApiListingImagesDestroy = <TError = unknown,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof apiListingImagesDestroy>>, TError,{id: string}, TContext>, }
+) => {
+      const {mutation: mutationOptions} = options ?? {}
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof apiListingImagesDestroy>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  apiListingImagesDestroy(id,)
+        }
+
+      return useMutation<Awaited<ReturnType<typeof apiListingImagesDestroy>>, TError, {id: string}, TContext>(mutationFn, mutationOptions)
+    }
+    /**
  * Return a list of all the listing views.
  */
 export const apiListingViewsList = (
@@ -587,7 +836,7 @@ export const apiListingsList = (
     params?: ApiListingsListParams,
  signal?: AbortSignal
 ) => {
-      return customInstance<Listing[]>(
+      return customInstance<PaginatedListingList>(
       {url: `/api/listings/`, method: 'get', signal,
         params,
     },
@@ -819,34 +1068,35 @@ export const apiListingsPartialUpdate = (
  * Return a list of all the existing reviews.
  */
 export const apiReviewsList = (
-    
+    params?: ApiReviewsListParams,
  signal?: AbortSignal
 ) => {
-      return customInstance<Review[]>(
-      {url: `/api/reviews/`, method: 'get', signal
+      return customInstance<PaginatedReviewList>(
+      {url: `/api/reviews/`, method: 'get', signal,
+        params,
     },
       );
     }
   
 
-export const getApiReviewsListQueryKey = () => [`/api/reviews/`];
+export const getApiReviewsListQueryKey = (params?: ApiReviewsListParams,) => [`/api/reviews/`, ...(params ? [params]: [])];
 
     
 export type ApiReviewsListInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof apiReviewsList>>>
 export type ApiReviewsListInfiniteQueryError = unknown
 
 export const useApiReviewsListInfinite = <TData = Awaited<ReturnType<typeof apiReviewsList>>, TError = unknown>(
-  options?: { query?:UseInfiniteQueryOptions<Awaited<ReturnType<typeof apiReviewsList>>, TError, TData>, }
+ params?: ApiReviewsListParams, options?: { query?:UseInfiniteQueryOptions<Awaited<ReturnType<typeof apiReviewsList>>, TError, TData>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
   const {query: queryOptions} = options ?? {}
 
-  const queryKey = queryOptions?.queryKey ?? getApiReviewsListQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getApiReviewsListQueryKey(params);
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiReviewsList>>> = ({ signal }) => apiReviewsList(signal);
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiReviewsList>>> = ({ signal }) => apiReviewsList(params, signal);
 
   const query = useInfiniteQuery<Awaited<ReturnType<typeof apiReviewsList>>, TError, TData>(queryKey, queryFn, {  staleTime: Infinity,  ...queryOptions})
 
@@ -860,17 +1110,17 @@ export type ApiReviewsListQueryResult = NonNullable<Awaited<ReturnType<typeof ap
 export type ApiReviewsListQueryError = unknown
 
 export const useApiReviewsList = <TData = Awaited<ReturnType<typeof apiReviewsList>>, TError = unknown>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof apiReviewsList>>, TError, TData>, }
+ params?: ApiReviewsListParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof apiReviewsList>>, TError, TData>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
   const {query: queryOptions} = options ?? {}
 
-  const queryKey = queryOptions?.queryKey ?? getApiReviewsListQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getApiReviewsListQueryKey(params);
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiReviewsList>>> = ({ signal }) => apiReviewsList(signal);
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiReviewsList>>> = ({ signal }) => apiReviewsList(params, signal);
 
   const query = useQuery<Awaited<ReturnType<typeof apiReviewsList>>, TError, TData>(queryKey, queryFn, {  staleTime: Infinity,  ...queryOptions})
 
@@ -919,7 +1169,7 @@ export const apiReviewsCreate = (
  * Return the given review.
  */
 export const apiReviewsRetrieve = (
-    id: number,
+    id: string,
  signal?: AbortSignal
 ) => {
       return customInstance<Review>(
@@ -929,14 +1179,14 @@ export const apiReviewsRetrieve = (
     }
   
 
-export const getApiReviewsRetrieveQueryKey = (id: number,) => [`/api/reviews/${id}/`];
+export const getApiReviewsRetrieveQueryKey = (id: string,) => [`/api/reviews/${id}/`];
 
     
 export type ApiReviewsRetrieveInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof apiReviewsRetrieve>>>
 export type ApiReviewsRetrieveInfiniteQueryError = unknown
 
 export const useApiReviewsRetrieveInfinite = <TData = Awaited<ReturnType<typeof apiReviewsRetrieve>>, TError = unknown>(
- id: number, options?: { query?:UseInfiniteQueryOptions<Awaited<ReturnType<typeof apiReviewsRetrieve>>, TError, TData>, }
+ id: string, options?: { query?:UseInfiniteQueryOptions<Awaited<ReturnType<typeof apiReviewsRetrieve>>, TError, TData>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
@@ -960,7 +1210,7 @@ export type ApiReviewsRetrieveQueryResult = NonNullable<Awaited<ReturnType<typeo
 export type ApiReviewsRetrieveQueryError = unknown
 
 export const useApiReviewsRetrieve = <TData = Awaited<ReturnType<typeof apiReviewsRetrieve>>, TError = unknown>(
- id: number, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof apiReviewsRetrieve>>, TError, TData>, }
+ id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof apiReviewsRetrieve>>, TError, TData>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
@@ -981,7 +1231,7 @@ export const useApiReviewsRetrieve = <TData = Awaited<ReturnType<typeof apiRevie
 }
 
 export const apiReviewsPartialUpdate = (
-    id: number,
+    id: string,
     patchedReviewRequest: PatchedReviewRequest,
  
 ) => {
@@ -1001,23 +1251,23 @@ export const apiReviewsPartialUpdate = (
 
     export const useApiReviewsPartialUpdate = <TError = unknown,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof apiReviewsPartialUpdate>>, TError,{id: number;data: PatchedReviewRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof apiReviewsPartialUpdate>>, TError,{id: string;data: PatchedReviewRequest}, TContext>, }
 ) => {
       const {mutation: mutationOptions} = options ?? {}
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof apiReviewsPartialUpdate>>, {id: number;data: PatchedReviewRequest}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof apiReviewsPartialUpdate>>, {id: string;data: PatchedReviewRequest}> = (props) => {
           const {id,data} = props ?? {};
 
           return  apiReviewsPartialUpdate(id,data,)
         }
 
-      return useMutation<Awaited<ReturnType<typeof apiReviewsPartialUpdate>>, TError, {id: number;data: PatchedReviewRequest}, TContext>(mutationFn, mutationOptions)
+      return useMutation<Awaited<ReturnType<typeof apiReviewsPartialUpdate>>, TError, {id: string;data: PatchedReviewRequest}, TContext>(mutationFn, mutationOptions)
     }
     export const apiReviewsDestroy = (
-    id: number,
+    id: string,
  
 ) => {
       return customInstance<void>(
@@ -1034,20 +1284,20 @@ export const apiReviewsPartialUpdate = (
 
     export const useApiReviewsDestroy = <TError = unknown,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof apiReviewsDestroy>>, TError,{id: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof apiReviewsDestroy>>, TError,{id: string}, TContext>, }
 ) => {
       const {mutation: mutationOptions} = options ?? {}
 
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof apiReviewsDestroy>>, {id: number}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof apiReviewsDestroy>>, {id: string}> = (props) => {
           const {id} = props ?? {};
 
           return  apiReviewsDestroy(id,)
         }
 
-      return useMutation<Awaited<ReturnType<typeof apiReviewsDestroy>>, TError, {id: number}, TContext>(mutationFn, mutationOptions)
+      return useMutation<Awaited<ReturnType<typeof apiReviewsDestroy>>, TError, {id: string}, TContext>(mutationFn, mutationOptions)
     }
     /**
  * Return a list of all the existing Subcategories.
@@ -1285,34 +1535,35 @@ export const apiSubCategoriesPartialUpdate = (
       return useMutation<Awaited<ReturnType<typeof apiSubCategoriesDestroy>>, TError, {slug: string}, TContext>(mutationFn, mutationOptions)
     }
     export const apiUsersList = (
-    
+    params?: ApiUsersListParams,
  signal?: AbortSignal
 ) => {
-      return customInstance<User[]>(
-      {url: `/api/users/`, method: 'get', signal
+      return customInstance<PaginatedUserList>(
+      {url: `/api/users/`, method: 'get', signal,
+        params,
     },
       );
     }
   
 
-export const getApiUsersListQueryKey = () => [`/api/users/`];
+export const getApiUsersListQueryKey = (params?: ApiUsersListParams,) => [`/api/users/`, ...(params ? [params]: [])];
 
     
 export type ApiUsersListInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof apiUsersList>>>
 export type ApiUsersListInfiniteQueryError = unknown
 
 export const useApiUsersListInfinite = <TData = Awaited<ReturnType<typeof apiUsersList>>, TError = unknown>(
-  options?: { query?:UseInfiniteQueryOptions<Awaited<ReturnType<typeof apiUsersList>>, TError, TData>, }
+ params?: ApiUsersListParams, options?: { query?:UseInfiniteQueryOptions<Awaited<ReturnType<typeof apiUsersList>>, TError, TData>, }
 
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
   const {query: queryOptions} = options ?? {}
 
-  const queryKey = queryOptions?.queryKey ?? getApiUsersListQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getApiUsersListQueryKey(params);
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiUsersList>>> = ({ signal }) => apiUsersList(signal);
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiUsersList>>> = ({ signal }) => apiUsersList(params, signal);
 
   const query = useInfiniteQuery<Awaited<ReturnType<typeof apiUsersList>>, TError, TData>(queryKey, queryFn, {  staleTime: Infinity,  ...queryOptions})
 
@@ -1326,17 +1577,17 @@ export type ApiUsersListQueryResult = NonNullable<Awaited<ReturnType<typeof apiU
 export type ApiUsersListQueryError = unknown
 
 export const useApiUsersList = <TData = Awaited<ReturnType<typeof apiUsersList>>, TError = unknown>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof apiUsersList>>, TError, TData>, }
+ params?: ApiUsersListParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof apiUsersList>>, TError, TData>, }
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
   const {query: queryOptions} = options ?? {}
 
-  const queryKey = queryOptions?.queryKey ?? getApiUsersListQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getApiUsersListQueryKey(params);
 
   
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiUsersList>>> = ({ signal }) => apiUsersList(signal);
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiUsersList>>> = ({ signal }) => apiUsersList(params, signal);
 
   const query = useQuery<Awaited<ReturnType<typeof apiUsersList>>, TError, TData>(queryKey, queryFn, {  staleTime: Infinity,  ...queryOptions})
 

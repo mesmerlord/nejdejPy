@@ -40,8 +40,12 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES = {
+    "default": env.db("DATABASE_URL"),
+    }
+
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
+DATABASES["default"]["ENGINE"] = 'django.contrib.gis.db.backends.postgis'
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -64,13 +68,18 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
+    'django.contrib.gis'
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
-    "allauth",
     "allauth.account",
-    "allauth.socialaccount",
+    "allauth",
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.google',
+    'dj_rest_auth',
     "django_celery_beat",
     "rest_framework",
     "rest_framework.authtoken",
@@ -306,15 +315,17 @@ SOCIALACCOUNT_FORMS = {"signup": "nejdej.users.forms.UserSocialSignupForm"}
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        # "rest_framework.authentication.SessionAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    'DEFAULT_PAGINATION_CLASS': 'nejdej.utils.pagination.CustomPageNumberPagination',
+    'PAGE_SIZE': 10,
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
-CORS_URLS_REGEX = r"^/api/.*$"
+CORS_URLS_REGEX = r"^/(api|rest-auth|dj-rest-auth)/.*$"
 
 # By Default swagger ui is available only to admin user(s). You can change permission classes to change that
 # See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
