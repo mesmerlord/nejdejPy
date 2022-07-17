@@ -29,7 +29,9 @@ class Category(AbstractClient):
 class SubCategory(AbstractClient):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, primary_key=True)
-    category = models.ForeignKey("categories.Category", on_delete=models.CASCADE, related_name="subcategories")
+    category = models.ForeignKey(
+        "categories.Category", on_delete=models.CASCADE, related_name="subcategories"
+    )
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(storage=CategoryImageStorage(), null=True, blank=True)
     is_active = models.BooleanField(default=True)

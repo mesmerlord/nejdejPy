@@ -10,19 +10,22 @@ from django_filters import rest_framework as filters_new
 from rest_framework.filters import OrderingFilter
 
 from .models import Category, SubCategory
-from .serializers import CategorySerializer, CategorySubCategoryNestedSerializer, SubCategorySerializer
+from .serializers import (
+    CategorySerializer,
+    CategorySubCategoryNestedSerializer,
+    SubCategorySerializer,
+)
+
 
 class SubCategoryFilter(filters_new.FilterSet):
-
     class Meta:
         model = SubCategory
         fields = {
-            'name': ['exact', 'contains'],
-            'description': ['contains'],
-            'category': ['exact'],
-            'is_active': ['exact'],
+            "name": ["exact", "contains"],
+            "description": ["contains"],
+            "category": ["exact"],
+            "is_active": ["exact"],
         }
-
 
 
 @extend_schema_view(
@@ -33,7 +36,6 @@ class CategoryViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = None
-
 
     @extend_schema(
         description="Seed the database with categories from Bazos.",
@@ -53,13 +55,13 @@ class CategoryViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
 
     @extend_schema(
         description="Get Categories with Subcategory nested",
-        responses = CategorySubCategoryNestedSerializer(many = True)
+        responses=CategorySubCategoryNestedSerializer(many=True),
     )
     @action(
         methods=["get"],
         detail=False,
         pagination_class=None,
-        serializer_class=CategorySubCategoryNestedSerializer(many = True)
+        serializer_class=CategorySubCategoryNestedSerializer(many=True),
     )
     def nested_subcategories(self, request, *args, **kwargs):
         """
@@ -68,7 +70,8 @@ class CategoryViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
         categories = Category.objects.all()
         serializer = CategorySubCategoryNestedSerializer(categories, many=True)
         return Response(serializer.data)
-    
+
+
 @extend_schema_view(
     retrieve=extend_schema(description="Return the given Subcategory."),
     list=extend_schema(description="Return a list of all the existing Subcategories."),
@@ -79,5 +82,5 @@ class SubCategoryViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
     pagination_class = None
 
     filter_backends = [filters_new.DjangoFilterBackend, OrderingFilter]
-    ordering_fields = '__all__'
+    ordering_fields = "__all__"
     filterset_class = SubCategoryFilter

@@ -12,7 +12,9 @@ class Listing(AbstractClient):
         PUBLISHED = "PB", _("Published")
         DENIED = "DN", _("Denied")
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
+    id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False, unique=True
+    )
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     status = models.CharField(
@@ -22,8 +24,12 @@ class Listing(AbstractClient):
         editable=False,
         help_text=StatusChoices.choices,
     )
-    user = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name="listings")
-    sub_category = models.ForeignKey("categories.SubCategory", on_delete=models.CASCADE, related_name="listings")
+    user = models.ForeignKey(
+        "users.User", on_delete=models.CASCADE, related_name="listings"
+    )
+    sub_category = models.ForeignKey(
+        "categories.SubCategory", on_delete=models.CASCADE, related_name="listings"
+    )
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
@@ -38,9 +44,18 @@ class Listing(AbstractClient):
             self.status = "DF"
         super().save(*args, **kwargs)
 
+
 class ListingImage(AbstractClient):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
-    listing = models.ForeignKey("listings.Listing", on_delete=models.CASCADE, related_name = "listing_images", null = True, blank = True)
+    id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False, unique=True
+    )
+    listing = models.ForeignKey(
+        "listings.Listing",
+        on_delete=models.CASCADE,
+        related_name="listing_images",
+        null=True,
+        blank=True,
+    )
     image = models.ImageField(storage=ListingImageStorage())
 
     class Meta:
