@@ -177,3 +177,8 @@ sentry_sdk.init(
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://www.nejdej.com",
+    "https://nejdej.com",
+]
