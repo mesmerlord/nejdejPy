@@ -1,7 +1,5 @@
 import { Box, Button, Card, Col, Grid, Group, Image, Text, Title } from '@mantine/core';
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
 import { useApiCategoriesList } from '../src/api/api';
-import { Category } from '../src/model';
 import { dehydrate, QueryClient } from 'react-query';
 import { apiCategoriesList } from '../src/api/api';
 import LinkText from '../components/common/LinkText';
@@ -58,7 +56,6 @@ export default function HomePage() {
           ))}
         </Grid>
       </Box>
-      <ColorSchemeToggle />
     </>
   );
 }

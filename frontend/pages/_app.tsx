@@ -1,9 +1,7 @@
-import { GetServerSidePropsContext } from 'next';
 import React, { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
-import { getCookie } from 'cookies-next';
 import Head from 'next/head';
-import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import { MantineProvider, ColorScheme } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { Provider, useCreateStore } from '../src/store/store';
@@ -13,7 +11,7 @@ import Loading from '../components/common/Loading';
 import Background from '../components/background/Background';
 import Navbar from '../components/navbar/Navbar';
 
-export default function App(props: AppProps & { colorScheme: ColorScheme }) {
+export default function App(props: AppProps) {
   const { Component, pageProps } = props;
   const [queryClient] = React.useState(() => new QueryClient());
   const createStore = useCreateStore(pageProps?.initialZustandState);
@@ -85,7 +83,3 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     </>
   );
 }
-
-App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
-  colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
-});
