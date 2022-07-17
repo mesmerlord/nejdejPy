@@ -37,8 +37,8 @@ const Login = () => {
   const logIn = useStore((state) => state.setAccessToken);
   const setUserInfo = useStore((state) => state.setUserInfo);
 
-  const fbAppId = '298089388720155';
-  const clientId = '778632375770-0ndavp1ba39q5qkj20bukf5ankbjs5gn.apps.googleusercontent.com';
+  const fbAppId = process.env.NEXT_PUBLIC_FACEBOOK_CLIENT;
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT;
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const router = useRouter();
