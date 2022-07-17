@@ -151,7 +151,7 @@ const Login = () => {
             Login
           </Button>
           <GoogleLogin
-            clientId={clientId}
+            clientId={clientId || ''}
             render={(renderProps) => (
               <Button
                 color="gray"
