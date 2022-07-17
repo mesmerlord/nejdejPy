@@ -83,6 +83,14 @@ const Login = () => {
           });
           router.back();
         },
+        onError: (error) => {
+          ReactGA.event({
+            category: `User Login`,
+            action: `Google Login`,
+            label: `Failed`,
+          });
+          console.log(error);
+        },
       }
     );
   };
