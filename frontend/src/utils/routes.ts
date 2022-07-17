@@ -1,0 +1,17 @@
+export const routes = {
+  home: '/',
+  listings: '/listings/',
+  tag: '/tag/',
+  category: '/category/',
+  login: '/users/login/',
+  signup: '/users/signup/',
+  search: '/search/',
+  profile: '/profile/',
+  profileView: '/users/profile/view',
+  bookmark: '/users/profile/bookmark',
+  settings: '/users/profile/settings',
+  preferences: '/users/profile/preferences',
+  privacyPolicy: '/about/privacy-policy/',
+  tags: '/show_all/tags',
+  categories: '/show_all/categories',
+};

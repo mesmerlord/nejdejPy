@@ -15,8 +15,9 @@ Default.args = {
     price: '100',
     listing_images: [
       {
-        id: 1,
+        id: 'test',
         image: 'https://via.placeholder.com/150',
+        listing: '1',
       },
     ],
     views: {
@@ -30,7 +31,12 @@ Default.args = {
     },
     description: 'Something something',
     status: 'PB',
-    user: 1,
+    user: {
+      id: 1,
+      first_name: 'Test',
+      last_name: 'User',
+      image: 'https://via.placeholder.com/150',
+    },
     sub_category: 'something',
   },
 };

@@ -37,6 +37,7 @@ WORKDIR ${APP_HOME}
 
 # Install required system dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
+  binutils libproj-dev gdal-bin \
   # psycopg2 dependencies
   libpq-dev \
   # Translations dependencies

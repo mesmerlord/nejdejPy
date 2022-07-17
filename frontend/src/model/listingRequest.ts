@@ -8,11 +8,9 @@
 import type { ListingImageRequest } from './listingImageRequest';
 
 export interface ListingRequest {
-  id: string;
   listing_images: ListingImageRequest[];
   title: string;
   description?: string | null;
   price: string;
-  user: number;
   sub_category: string;
 }

@@ -43,6 +43,8 @@ RUN addgroup --system django \
 
 # Install required system dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
+  # dependencies for GIS for location info 
+  binutils libproj-dev gdal-bin \
   # psycopg2 dependencies
   libpq-dev \
   # Translations dependencies

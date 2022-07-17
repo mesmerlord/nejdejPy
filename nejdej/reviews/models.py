@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -10,7 +11,7 @@ class Review(AbstractClient):
         DRAFT = "DF", _("Draft")
         PUBLISHED = "PB", _("Published")
         DENIED = "DN", _("Denied")
-
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     status = models.CharField(
@@ -20,9 +21,9 @@ class Review(AbstractClient):
         editable=False,
         help_text=StatusChoices.choices,
     )
-    user = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    user = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name = "reviews")
     listing = models.ForeignKey(
-        "listings.Listing", null=True, blank=True, on_delete=models.SET_NULL
+        "listings.Listing", null=True, blank=True, on_delete=models.SET_NULL, related_name="reviews"
     )
 
     class Meta:
@@ -34,5 +35,6 @@ class Review(AbstractClient):
 
 
 class ReviewImage(AbstractClient):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     image = models.ImageField(storage=ReviewImageStorage(), null=True, blank=True)
-    review = models.ForeignKey("reviews.Review", on_delete=models.CASCADE)
+    review = models.ForeignKey("reviews.Review", on_delete=models.CASCADE, related_name="review_images")

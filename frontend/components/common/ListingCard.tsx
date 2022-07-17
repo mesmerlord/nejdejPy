@@ -7,12 +7,13 @@ export interface ListingCardProps {
 }
 
 const ListingCard = ({ listing }) => (
-  <LinkText href={`/listing/${listing.id}`}>
+  <LinkText href={`/listings/${listing.id}`}>
     <Card shadow="sm">
       <Card.Section>
         <Image
-          src={`${listing?.listing_images[0].image}?=${Math.floor(Math.random() * 1000)}`}
+          src={listing?.listing_images && `${listing?.listing_images[0]?.image}`}
           height={160}
+          withPlaceholder={true}
         />
       </Card.Section>
 

@@ -5,6 +5,7 @@ from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from nejdej.utils.social_accounts import FacebookLogin, GoogleLogin
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
@@ -32,6 +33,9 @@ urlpatterns += [
         SpectacularSwaggerView.as_view(url_name="api-schema"),
         name="api-docs",
     ),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('rest-auth/google/', GoogleLogin.as_view(), name='google_login'),
+    path('rest-auth/facebook/', FacebookLogin.as_view(), name='fb_login'),
 ]
 
 if settings.DEBUG:

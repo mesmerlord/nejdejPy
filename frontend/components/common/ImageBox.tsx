@@ -4,19 +4,15 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { SizeIcon } from '@radix-ui/react-icons';
-
-type Image = {
-  url: string;
-  id: string;
-};
+import { ListingImage } from '../../src/model';
 
 interface ImageBoxProps {
-  images: Image[];
+  images: ListingImage[];
 }
 
 const ImageBox = ({ images }: ImageBoxProps) => {
   const [mainImage, setMainImage] = useState(0);
-  const [maximizedImage, setMaximizedImage] = useState<Image | null>();
+  const [maximizedImage, setMaximizedImage] = useState<ListingImage | null>();
 
   const settings = {
     dots: true,
@@ -33,7 +29,7 @@ const ImageBox = ({ images }: ImageBoxProps) => {
     }
   }, [mainImage]);
 
-  const maximizeImage = (image: Image) => {
+  const maximizeImage = (image: ListingImage) => {
     setMaximizedImage(image);
   };
   return (
@@ -66,7 +62,7 @@ const ImageBox = ({ images }: ImageBoxProps) => {
 
               <Image
                 width={400}
-                src={`${image.url}?tr=h-600,w-800,ote-TkVKREVKLkNPTQ==,cm-force,bg-F3F3F3,ox-N35,oy-N50,ots-50,oa-6,otbg-70FFFF30`}
+                src={`${image.image}?tr=h-600,w-800,ote-TkVKREVKLkNPTQ==,cm-force,bg-F3F3F3,ox-N35,oy-N50,ots-50,oa-6,otbg-70FFFF30`}
                 sx={{
                   '&:hover': {
                     boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.3)',
@@ -80,7 +76,7 @@ const ImageBox = ({ images }: ImageBoxProps) => {
         </Slider>
       ) : (
         <Image
-          src={`${images[0].url}?tr=h-600,w-800,ote-TkVKREVKLkNPTQ==,cm-force,bg-F3F3F3,ox-N35,oy-N50,ots-50,oa-6,otbg-70FFFF30`}
+          src={`${images[0].image}?tr=h-600,w-800,ote-TkVKREVKLkNPTQ==,cm-force,bg-F3F3F3,ox-N35,oy-N50,ots-50,oa-6,otbg-70FFFF30`}
           sx={{ marginBottom: '20px' }}
         />
       )}
@@ -90,7 +86,7 @@ const ImageBox = ({ images }: ImageBoxProps) => {
         size={1300}
       >
         <Image
-          src={`${maximizedImage?.url}?tr=h-1000,ote-TkVKREVKLkNPTQ==,cm-force,bg-F3F3F3,ox-N35,oy-N50,ots-60,oa-5,otbg-70FFFF20`}
+          src={`${maximizedImage?.image}?tr=h-1000,ote-TkVKREVKLkNPTQ==,cm-force,bg-F3F3F3,ox-N35,oy-N50,ots-60,oa-5,otbg-70FFFF20`}
           sx={{ marginBottom: '20px' }}
         />
       </Modal>
@@ -103,7 +99,7 @@ const ImageBox = ({ images }: ImageBoxProps) => {
               }
             }}
             width={100}
-            src={image.url}
+            src={image.image}
             sx={{
               '&:hover': {
                 boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.3)',

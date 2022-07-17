@@ -65,7 +65,12 @@ const CategoryViewPage = () => {
               <LinkText href={`/subcategories/${subcategory.slug}`}>
                 <Card shadow="sm" sx={{ marginBottom: '10px' }}>
                   <Card.Section>
-                    <Image src={`${subcategory?.image}`} height={50} />
+                    <Image
+                      src={`https://fakeimg.pl/350x200/?text=${subcategory?.name}`}
+                      height={50}
+                    />
+
+                    {/* <Image src={`${subcategory?.image}`} height={50} /> */}
                   </Card.Section>
                 </Card>
               </LinkText>
@@ -73,7 +78,7 @@ const CategoryViewPage = () => {
           </Col>
           <Col span={9}>
             <Grid>
-              {listings?.map((listing) => (
+              {listings?.results?.map((listing) => (
                 <Col span={12} sm={6} md={4} xs={6} xl={3} key={listing.id}>
                   <ListingCard listing={listing} />
                 </Col>

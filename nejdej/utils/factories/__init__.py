@@ -87,7 +87,7 @@ class ListingFactory(factory.django.DjangoModelFactory):
 class ListingImageFactory(factory.django.DjangoModelFactory):
     """ListingImage factory."""
 
-    id = factory.Sequence(lambda n: n + 1)
+    id = factory.LazyAttribute(lambda x: faker.uuid4())
     image = factory.django.ImageField(color="pink")
     listing = factory.Iterator(Listing.objects.all())
 
@@ -99,7 +99,7 @@ class ListingImageFactory(factory.django.DjangoModelFactory):
 class ReviewFactory(factory.django.DjangoModelFactory):
     """Review factory."""
 
-    id = factory.Sequence(lambda n: n + 1)
+    id = factory.LazyAttribute(lambda x: faker.uuid4())
     title = factory.LazyAttribute(lambda x: faker.paragraph(nb_sentences=1))
     description = factory.LazyAttribute(lambda x: faker.paragraph(nb_sentences=3))
     status = factory.Iterator(Review.StatusChoices)
@@ -114,7 +114,7 @@ class ReviewFactory(factory.django.DjangoModelFactory):
 class ReviewImageFactory(factory.django.DjangoModelFactory):
     """ReviewImage factory."""
 
-    id = factory.Sequence(lambda n: n + 1)
+    id = factory.LazyAttribute(lambda x: faker.uuid4())
     image = factory.django.ImageField(color="pink")
     review = factory.Iterator(Review.objects.all())
 

@@ -2,3 +2,5 @@ api/
 auth-token/
 model/
 orval.config.ts
+rest-auth/
+dj-rest-auth/

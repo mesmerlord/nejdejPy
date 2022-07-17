@@ -1,32 +1,27 @@
 import React from 'react';
 import { createStyles, Card, Avatar, Text, Button } from '@mantine/core';
 import LinkText from './LinkText';
+import { ListingUser } from '../../src/model/listingUser';
 
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
   },
 
-  avatar: {
+  image: {
     border: `2px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
   },
 }));
 
-interface UserCardImageProps {
-  avatar: string;
-  name: string;
-  id: string;
-}
-
-export function UserCard({ avatar, name, id }: UserCardImageProps) {
+export function UserCard({ image, first_name, id }: ListingUser) {
   const { classes, theme } = useStyles();
 
   return (
     <Card withBorder radius="md" className={classes.card}>
       {/* <Card.Section sx={{ backgroundImage: `url(${image})`, height: 140 }} /> */}
-      <Avatar src={avatar} size={80} radius={80} mx="auto" mt={-30} className={classes.avatar} />
+      <Avatar src={image} size={80} radius={80} mx="auto" mt={-30} className={classes.image} />
       <Text align="center" size="lg" weight={500} mt="sm">
-        {name}
+        {first_name}
       </Text>
 
       <LinkText href={`/user/${id}`}>

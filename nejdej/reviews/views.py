@@ -14,4 +14,3 @@ from .serializers import ReviewSerializer
 class ReviewViewSet(HttpMethodRestrictionViewSet, viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    pagination_class = None
