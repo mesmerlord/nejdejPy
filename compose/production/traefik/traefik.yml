@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-        rule: 'Host(`nejdej.com`) && PathPrefix(`/api/`, `/api-schema/`, `/{{env "DJANGO_ADMIN_URL"}}` ) || Host(`www.nejdej.com`) && PathPrefix(`/api/`, `/api-schema/`, `/{{env "DJANGO_ADMIN_URL"}}`)'
+        rule: 'Host(`nejdej.com`) && PathPrefix(`/api/`, `/rest-auth/`, `/dj-rest-auth/`, `/api-schema/`, `/{{env "DJANGO_ADMIN_URL"}}` ) || Host(`www.nejdej.com`) && PathPrefix(`/api/`,`/rest-auth/`, `/dj-rest-auth/`, `/api-schema/`, `/{{env "DJANGO_ADMIN_URL"}}`)'
         entryPoints:
           - web-secure
         middlewares:
