@@ -27,12 +27,8 @@ export async function getServerSideProps(ctx) {
       accessToken,
     });
   }
-  await queryClient.prefetchQuery(
-    getApiListingsRetrieveQueryKey(id),
-    () => apiListingsRetrieve(id),
-    {
-      staleTime: Infinity,
-    }
+  await queryClient.prefetchQuery(getApiListingsRetrieveQueryKey(id), () =>
+    apiListingsRetrieve(id)
   );
   return {
     props: {

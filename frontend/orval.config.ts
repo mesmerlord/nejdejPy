@@ -20,6 +20,7 @@ module.exports = {
           useInfinite: true,
           options: {
             staleTime: Infinity,
+            refetchOnWindowFocus: false,
           },
         },
       },

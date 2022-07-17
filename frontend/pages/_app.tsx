@@ -17,7 +17,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
   const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
   const [queryClient] = React.useState(() => new QueryClient());
-  const createStore = useCreateStore(pageProps.initialZustandState);
+  const createStore = useCreateStore(pageProps?.initialZustandState);
   const router = useRouter();
   const [state, setState] = useState({
     isRouteChanging: false,
