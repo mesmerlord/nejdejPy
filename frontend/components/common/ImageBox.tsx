@@ -88,7 +88,7 @@ const ImageBox = ({ images }: ImageBoxProps) => {
       >
         <Image
           src={replaceWithWaterMark({ image: maximizedImage?.image, height: 1000 })}
-          src={`${maximizedImage?.image}?tr=h-1000,ote-TkVKREVKLkNPTQ==,cm-force,bg-F3F3F3,ox-N35,oy-N50,ots-60,oa-5,otbg-70FFFF20`}
+          // src={`${maximizedImage?.image}?tr=h-1000,ote-TkVKREVKLkNPTQ==,cm-force,bg-F3F3F3,ox-N35,oy-N50,ots-60,oa-5,otbg-70FFFF20`}
           sx={{ marginBottom: '20px' }}
         />
       </Modal>
