@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 import React, { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
-import { getCookie, setCookies } from 'cookies-next';
+import { getCookie } from 'cookies-next';
 import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
@@ -15,7 +15,6 @@ import Navbar from '../components/navbar/Navbar';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
   const [queryClient] = React.useState(() => new QueryClient());
   const createStore = useCreateStore(pageProps?.initialZustandState);
   const router = useRouter();
@@ -56,17 +55,11 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     };
   }, [router.events]);
 
-  const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
-    setColorScheme(nextColorScheme);
-    setCookies('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
-  };
-
   return (
     <>
       <Provider createStore={createStore}>
         <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
+          <Hydrate state={pageProps?.dehydratedState}>
             <Head>
               <title>Mantine next example</title>
               <meta
@@ -76,18 +69,16 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
               <link rel="shortcut icon" href="/favicon.svg" />
             </Head>
 
-            <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-              <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-                <NotificationsProvider>
-                  <Loading isRouteChanging={state.isRouteChanging} key={state.loadingKey} />
-                  <Background>
-                    <Navbar />
+            <MantineProvider withGlobalStyles withNormalizeCSS>
+              <NotificationsProvider>
+                <Loading isRouteChanging={state.isRouteChanging} key={state.loadingKey} />
+                <Background>
+                  <Navbar />
 
-                    <Component {...pageProps} />
-                  </Background>
-                </NotificationsProvider>
-              </MantineProvider>
-            </ColorSchemeProvider>
+                  <Component {...pageProps} />
+                </Background>
+              </NotificationsProvider>
+            </MantineProvider>
           </Hydrate>
         </QueryClientProvider>
       </Provider>
